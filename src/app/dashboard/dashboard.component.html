@@ -1,14 +1,46 @@
 <h2>Tableau de bord</h2>
 
 <!-- Boutons spécifiques à l'employé -->
-<div *ngIf="userType === 'jobseeker'">
-  <button routerLink="/offres-actuelles">Offres d'emploi</button>
-  <button routerLink="/offres-acceptees">Offres acceptées</button>
-  <button routerLink="/messages">Messages</button>
-</div>
+<mat-sidenav-container *ngIf="userType === 'jobseeker'" style="position: fixed; top: 0; left: 0;">
+  <mat-sidenav mode="side" opened>
+    <ul>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li><a routerLink="/job-offers">Jobs Offer</a></li>
+      <li><a routerLink="/job-confirmation">Job Confirmation</a></li>
+      <li><a routerLink="/messages">Messages</a></li>
+      <li><a routerLink="/profile">Profile</a></li>
+      <li><a routerLink="/photos">Photos</a></li>
+      <li><a routerLink="/status-check">Status Check</a></li>
+      <li><a routerLink="/work-permit">Work Permit</a></li>
+      <li><a routerLink="/personal-data-sheet">Personal Data Sheet</a></li>
+      <li><a routerLink="/profile">ProfileTest</a></li>
+      <li><a routerLink="/photos">PhotosTest</a></li>
+      <li><a routerLink="/status-check">Status CheckTest</a></li>
+      <li><a routerLink="/work-permit">Work PermitTest</a></li>
+      <li><a routerLink="/personal-data-sheet">Personal Data SheetTest</a></li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content style="margin-top: 64px;">
+    <!-- Your content here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
 
 <!-- Boutons spécifiques à l'employeur -->
-<div *ngIf="userType === 'employe'">
-  <button routerLink="/mes-jobs">Mes jobs</button>
-  <button routerLink="/candidatures">Candidatures</button>
-</div>
+<mat-sidenav-container *ngIf="userType === 'employer'">
+  <mat-sidenav mode="side" opened>
+    <ul>
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li><a routerLink="/my-job-offers">My Job Offers</a></li>
+      <li><a routerLink="/applications">Applications</a></li>
+      <li><a routerLink="/messages">Messages</a></li>
+      <li><a routerLink="/candidate-information">Candidate Information</a></li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- Your content here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

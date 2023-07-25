@@ -18,5 +18,8 @@ export class HeaderComponent {
     this.sessionService.logOutSession();
     this.router.navigate(['/connection']);
   }
+  dashboard(){
+    this.router.navigate(['/dashboard']);
+  }
 
 }
