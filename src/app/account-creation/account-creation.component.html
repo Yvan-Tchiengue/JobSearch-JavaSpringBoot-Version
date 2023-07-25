@@ -1,0 +1,11 @@
+<form (ngSubmit)="submit()">
+  <h2>Account Creation</h2>
+  <input [(ngModel)]="jobSeeker.namee" name="namee" placeholder="Nom" required>
+  <input [(ngModel)]="jobSeeker.email" name="email" placeholder="Email" required>
+  <input [(ngModel)]="jobSeeker.password" name="password" placeholder="Mot de passe" type="password" required>
+  <select [(ngModel)]="jobSeeker.type_of_account" name="type_of_account">
+    <option value="jobseeker">JobSeeker</option>
+    <option value="employe">Employe</option>
+  </select>
+  <button type="submit">Create an Account</button>
+</form>
