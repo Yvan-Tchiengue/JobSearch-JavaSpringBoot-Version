@@ -1,0 +1,18 @@
+<!-- job-submition.component.html -->
+<form (submit)="submitJob()">
+  <div>
+    <label for="title">Titre de l'emploi :</label>
+    <input type="text" id="title" name="title" [(ngModel)]="job.title">
+  </div>
+  <div>
+    <label for="description">Description :</label>
+    <textarea id="description" name="description" [(ngModel)]="job.description"></textarea>
+  </div>
+  <div>
+    <label for="requirements">Exigences :</label>
+    <textarea id="requirements" name="requirements" [(ngModel)]="job.requirements"></textarea>
+  </div>
+  <div>
+    <button type="submit">Soumettre</button>
+  </div>
+</form>

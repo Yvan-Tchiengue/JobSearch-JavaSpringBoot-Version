@@ -20,6 +20,17 @@ import {HttpClientModule} from "@angular/common/http";
 
 import { FormsModule } from '@angular/forms';
 import { JobOfferService} from "./shared/job-offer.service";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+import { SidenavComponent } from './shared/sidenav/sidenav.component';
+import { JobsOfferComponent } from './jobs-offer/jobs-offer.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { JobsConfirmationComponent } from './jobs-confirmation/jobs-confirmation.component';
+import { ProfilComponent } from './profil/profil.component';
+import { JobSubmitionComponent } from './job-submition/job-submition.component';
+import { CandidatureComponent } from './candidature/candidature.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +39,14 @@ import { JobOfferService} from "./shared/job-offer.service";
     BookingRequestComponent,
     ConnectionComponent,
     DashboardComponent,
+    RegistrationComponent,
     HeaderComponent,
-    RegistrationComponent
+    SidenavComponent,
+    JobsOfferComponent,
+    JobsConfirmationComponent,
+    ProfilComponent,
+    JobSubmitionComponent,
+    CandidatureComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +57,12 @@ import { JobOfferService} from "./shared/job-offer.service";
     MatToolbarModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
+    MatFormFieldModule
   ],
   providers: [JobOfferService],
   bootstrap: [AppComponent]

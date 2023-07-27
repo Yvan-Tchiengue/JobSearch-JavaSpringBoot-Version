@@ -1,10 +1,15 @@
-<mat-toolbar color="primary" style="position: fixed; top: 0; left: 0; width: 100%; padding: 10px;">
-  <button (click)="dashboard()">JobSearch</button>
-  <span class="spacer"></span>
-  <button mat-button>Accueil</button>
-  <button mat-button>À propos</button>
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span (click)="dashboard()">JobSearch</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
   <button (click)="logout()">Logout</button>
-
-  <button mat-button>Contact</button>
 </mat-toolbar>
 
