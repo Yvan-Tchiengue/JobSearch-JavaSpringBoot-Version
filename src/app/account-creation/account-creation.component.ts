@@ -23,14 +23,14 @@ export class AccountCreationComponent {
   };
 
   submit() {
-    alert("les données a soumettre au serveur sont:" + JSON.stringify(this.jobSeeker));
+    //alert("les données a soumettre au serveur sont:" + JSON.stringify(this.jobSeeker));
     this.jobSeekerService.creerCompte(this.jobSeeker).subscribe(
       response => {
-        alert("la reponse du server est: " + response + JSON.stringify(response));
+        //alert("la reponse du server est: " + response + JSON.stringify(response));
         alert('Compte créé avec succès!');
       },
       error => {
-        alert("malheureusement le server me renvoit l'errur suivante: "+ error + JSON.stringify(error) + JSON.stringify(this.jobSeeker));
+        //alert("malheureusement le server me renvoit l'errur suivante: "+ error + JSON.stringify(error) + JSON.stringify(this.jobSeeker));
         alert('Erreur lors de la création du compte: ' + error.message);
       });
   }

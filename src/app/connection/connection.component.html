@@ -2,14 +2,16 @@
 
 <!-- Formulaire de connexion -->
 <form (ngSubmit)="submit()">
+  <span>E-mail</span>
   <input [(ngModel)]="credentials.email" name="email" placeholder="Email" required>
+  <span>PassWord</span>
   <input [(ngModel)]="credentials.password" name="password" placeholder="Mot de passe" type="password" required>
-  <button type="submit">Se connecter tony</button>
+  <button type="submit">Se connecter </button>
 </form>
-<button (click)="demanderCalcul()">Effectuer le calcul</button>
+<!--<button (click)="demanderCalcul()">Effectuer le calcul</button>
 <div>la reponse s'affiche ici a coté:</div>
-<div *ngIf="reponse">{{ reponse }}</div>
+<div *ngIf="reponse">{{ reponse }}</div>-->
 
 <!-- Lien vers la page d'enregistrement -->
-<a routerLink="/registration">Créer un compte</a>
+<a routerLink="/account-creation">Créer un compte</a>
 

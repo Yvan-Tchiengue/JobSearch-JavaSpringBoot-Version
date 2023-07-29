@@ -1,4 +1,6 @@
 <!-- job-confirmation.component.html -->
+<app-header></app-header>
+<app-sidenav></app-sidenav>
 <ng-container *ngIf="offresFavorables.length > 0; else noJobs">
   <div *ngFor="let offre of offresFavorables">
     <mat-card>

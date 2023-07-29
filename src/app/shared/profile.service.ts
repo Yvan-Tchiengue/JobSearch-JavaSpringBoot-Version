@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {SessionService} from "./session.service";
 
 @Injectable({
   providedIn: 'root'
@@ -8,17 +9,23 @@ import {Observable} from "rxjs";
 export class ProfileService {
 
 
-  private apiUrl = 'https://votre-api.com'; // Remplacez ceci par l'URL de votre API backend
+  private apiUrl = 'http://localhost:3000/api'; // Remplacez ceci par l'URL de votre API backend
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private authService: SessionService) { }
 
-  uploadFiles(titleOfStayFile: File, identityCardFile: File, workPermitFile: File): Observable<any> {
+  uploadFiles(titleOfStayFile: File, identityCardFile: File, workPermitFile: File, motivationLetterFile:File): Observable<any> {
     const formData = new FormData();
     formData.append('titleOfStay', titleOfStayFile, titleOfStayFile.name);
     formData.append('identityCard', identityCardFile, identityCardFile.name);
     formData.append('workPermit', workPermitFile, workPermitFile.name);
+    formData.append('motivationLetter', motivationLetterFile, motivationLetterFile.name);
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête
+    });
 
     // Envoyez les fichiers vers le backend pour les sauvegarder dans la base de données
-    return this.http.post(`${this.apiUrl}/uploadFiles`, formData);
+    return this.http.post(`${this.apiUrl}/uploadFiles`, formData, {headers});
   }
 }

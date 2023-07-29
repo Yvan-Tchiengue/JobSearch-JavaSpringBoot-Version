@@ -12,11 +12,16 @@ export class ProfilComponent {
   titleOfStayFile: File | null = null;
   identityCardFile: File | null = null;
   workPermitFile: File | null = null;
+  motivationLetterFile: File | null = null;
 
   constructor(private profilService: ProfileService) { }
 
   onTitleOfStaySelected(event: any): void {
     this.titleOfStayFile = event.target.files[0];
+  }
+
+  onMotivationLetterSelected(event: any): void{
+    this.motivationLetterFile = event.target.files[0];
   }
 
   onIdentityCardSelected(event: any): void {
@@ -28,8 +33,8 @@ export class ProfilComponent {
   }
 
   onFilesUpload(): void {
-    if (this.titleOfStayFile && this.identityCardFile && this.workPermitFile) {
-      this.profilService.uploadFiles(this.titleOfStayFile, this.identityCardFile, this.workPermitFile).subscribe(
+    if (this.titleOfStayFile && this.identityCardFile && this.workPermitFile && this.motivationLetterFile) {
+      this.profilService.uploadFiles(this.titleOfStayFile, this.identityCardFile, this.workPermitFile, this.motivationLetterFile).subscribe(
         () => {
           // Fichiers téléversés avec succès
           console.log('Fichiers téléversés avec succès');

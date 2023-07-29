@@ -33,3 +33,19 @@
 .spacer {
   flex: 1;
 }
+
+/* header.component.css */
+
+.mat-toolbar {
+  width: 100%; /* Largeur de 100% pour occuper toute la largeur */
+  position: fixed; /* Fixer la barre d'outils en haut de la page */
+  top: 0; /* Position en haut de la page */
+  left: 0; /* Position à gauche de la page */
+  z-index: 100; /* Assurer que le header est au-dessus du contenu */
+  background-color: #2196f3; /* Couleur de fond bleue (vous pouvez changer cette couleur selon vos préférences) */
+  color: #fff; /* Couleur du texte en blanc (vous pouvez également changer cela) */
+  display: flex; /* Utiliser Flexbox pour gérer le positionnement des éléments dans la barre d'outils */
+  align-items: center; /* Centrer les éléments verticalement dans la barre d'outils */
+  justify-content: space-between; /* Espacement égal des éléments dans la barre d'outils */
+  padding: 0 20px; /* Espacement intérieur gauche et droit de la barre d'outils */
+}

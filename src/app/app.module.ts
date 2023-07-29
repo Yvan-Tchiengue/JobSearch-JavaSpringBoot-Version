@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -62,7 +64,9 @@ import { CandidatureComponent } from './candidature/candidature.component';
     MatIconModule,
     MatListModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    CommonModule,
+    MatInputModule
   ],
   providers: [JobOfferService],
   bootstrap: [AppComponent]

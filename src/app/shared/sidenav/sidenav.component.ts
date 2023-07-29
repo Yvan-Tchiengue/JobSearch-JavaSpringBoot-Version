@@ -21,12 +21,14 @@ export class SidenavComponent {
   }
 
   ngAfterViewInit() {
-    this.sidenav.open();
+    setTimeout(() => {
+      this.sidenav.open();
+    });
   }
 
   ngOnInit(): void {
     this.userType = this.sessionService.getUserType();
-    alert("le usertype est: " +this.userType);
+    //alert("le usertype est: " +this.userType);
   }
 
   showFiller = false;
