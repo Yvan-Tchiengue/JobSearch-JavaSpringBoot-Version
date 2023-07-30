@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {SessionService} from "../session.service";
 import {MatSidenav} from "@angular/material/sidenav";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sidenav',
@@ -12,7 +13,8 @@ export class SidenavComponent {
 
   userType: string | null | undefined;
 
-  constructor(private sessionService: SessionService) { }
+  constructor(private sessionService: SessionService,
+              private router: Router) { }
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
@@ -49,6 +51,10 @@ export class SidenavComponent {
   decrease() {
     this.sidenavWidth = 4;
     console.log('decrease sidenav width');
+  }
+
+  goToProfile(){
+    this.router.navigate(['/profile']);
   }
 
 

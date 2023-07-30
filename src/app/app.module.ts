@@ -33,6 +33,8 @@ import { JobsConfirmationComponent } from './jobs-confirmation/jobs-confirmation
 import { ProfilComponent } from './profil/profil.component';
 import { JobSubmitionComponent } from './job-submition/job-submition.component';
 import { CandidatureComponent } from './candidature/candidature.component';
+import { EmployeJobsOfferComponent } from './employe-jobs-offer/employe-jobs-offer.component';
+import { ApplicationComponent } from './application/application.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { CandidatureComponent } from './candidature/candidature.component';
     JobsConfirmationComponent,
     ProfilComponent,
     JobSubmitionComponent,
-    CandidatureComponent
+    CandidatureComponent,
+    EmployeJobsOfferComponent,
+    ApplicationComponent
   ],
   imports: [
     BrowserModule,

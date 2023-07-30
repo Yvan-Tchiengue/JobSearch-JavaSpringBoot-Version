@@ -10,6 +10,8 @@ import {JobsConfirmationComponent} from "./jobs-confirmation/jobs-confirmation.c
 import {ProfilComponent} from "./profil/profil.component";
 import {JobSubmitionComponent} from "./job-submition/job-submition.component";
 import {CandidatureComponent} from "./candidature/candidature.component";
+import {EmployeJobsOfferComponent} from "./employe-jobs-offer/employe-jobs-offer.component";
+import {ApplicationComponent} from "./application/application.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/connection', pathMatch: 'full'},
@@ -22,7 +24,9 @@ const routes: Routes = [
   {path: 'jobs-confirmation', component: JobsConfirmationComponent},
   {path: 'profile', component: ProfilComponent},
   {path: 'job-submition', component: JobSubmitionComponent},
-  {path: 'candidature', component: CandidatureComponent}
+  {path: 'candidature', component: CandidatureComponent},
+  {path: 'employe-jobs-offer', component: EmployeJobsOfferComponent},
+  {path: 'applications', component: ApplicationComponent}
 ];
 
 @NgModule({
