@@ -46,3 +46,11 @@ form button {
 form button:hover {
   background-color: #0056b3;
 }
+
+.booking-request {
+  margin-top: 64px; /* Cela pourrait varier en fonction de la hauteur réelle de votre mat-toolbar */
+  position: relative; /* Ajouté pour le scrolling */
+  overflow-y: auto; /* Ajouté pour le scrolling */
+  height: calc(100% - 64px); /* Cela calcule la hauteur restante en soustrayant la hauteur de la barre d'outils */
+}
+

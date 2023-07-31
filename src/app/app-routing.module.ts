@@ -12,21 +12,24 @@ import {JobSubmitionComponent} from "./job-submition/job-submition.component";
 import {CandidatureComponent} from "./candidature/candidature.component";
 import {EmployeJobsOfferComponent} from "./employe-jobs-offer/employe-jobs-offer.component";
 import {ApplicationComponent} from "./application/application.component";
+import {HOME} from "@angular/cdk/keycodes";
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/connection', pathMatch: 'full'},
   {path: 'account-creation', component: AccountCreationComponent},
   {path: 'booking-request', component: BookingRequestComponent},
   {path: 'connection', component: ConnectionComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'registration', component: RegistrationComponent},
-  {path: 'jobs-offer', component: JobsOfferComponent},
+  {path: 'dashboard', component: DashboardComponent},
   {path: 'jobs-confirmation', component: JobsConfirmationComponent},
-  {path: 'profile', component: ProfilComponent},
+  {path: 'jobs-offer', component: JobsOfferComponent},
   {path: 'job-submition', component: JobSubmitionComponent},
   {path: 'candidature', component: CandidatureComponent},
   {path: 'employe-jobs-offer', component: EmployeJobsOfferComponent},
-  {path: 'applications', component: ApplicationComponent}
+  {path: 'applications', component: ApplicationComponent},
+  {path: 'profile', component: ProfilComponent}
 ];
 
 @NgModule({

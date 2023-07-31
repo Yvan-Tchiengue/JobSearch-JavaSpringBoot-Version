@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {SessionService} from "../session.service";
 import {MatSidenav} from "@angular/material/sidenav";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-sidenav',
@@ -42,7 +42,6 @@ export class SidenavComponent {
   selectItem(item: string) {
     this.selectedItem = item;
   }
-
 
   increase() {
     this.sidenavWidth = 15;

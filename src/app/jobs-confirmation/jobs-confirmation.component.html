@@ -1,19 +1,21 @@
 <!-- job-confirmation.component.html -->
 <app-header></app-header>
-<app-sidenav></app-sidenav>
-<ng-container *ngIf="offresFavorables.length > 0; else noJobs">
-  <div *ngFor="let offre of offresFavorables">
-    <mat-card>
-      <mat-card-title>{{ offre.titre }}</mat-card-title>
-      <mat-card-content>
-        <!-- Afficher les détails de l'offre d'emploi ici -->
-        {{ offre.description }}
-      </mat-card-content>
-    </mat-card>
-  </div>
-</ng-container>
 
-<ng-template #noJobs>
-  <p>No Jobs Detected</p>
-</ng-template>
+<div class="confirmation">
+  <ng-container *ngIf="offresFavorables.length > 0; else noJobs">
+    <div *ngFor="let offre of offresFavorables">
+      <mat-card>
+        <mat-card-title>{{ offre.titre }}</mat-card-title>
+        <mat-card-content>
+          <!-- Afficher les détails de l'offre d'emploi ici -->
+          {{ offre.description }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-container>
+
+  <ng-template #noJobs>
+    <p>No Jobs Detected</p>
+  </ng-template>
+</div>
 

@@ -35,6 +35,7 @@ import { JobSubmitionComponent } from './job-submition/job-submition.component';
 import { CandidatureComponent } from './candidature/candidature.component';
 import { EmployeJobsOfferComponent } from './employe-jobs-offer/employe-jobs-offer.component';
 import { ApplicationComponent } from './application/application.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ApplicationComponent } from './application/application.component';
     JobSubmitionComponent,
     CandidatureComponent,
     EmployeJobsOfferComponent,
-    ApplicationComponent
+    ApplicationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

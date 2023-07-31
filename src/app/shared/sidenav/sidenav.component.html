@@ -136,10 +136,10 @@
   <mat-sidenav-content style="margin-top: 64px;">
     <!-- Afficher le contenu à côté du sidenav -->
     <div class="content">
-      <!--<mat-card *ngIf="selectedItem === 'dashboard'"><router-outlet></router-outlet></mat-card>
-      <mat-card *ngIf="selectedItem === 'jobs-offer'">Contenu de Jobs Offer</mat-card>
-      <mat-card *ngIf="selectedItem === 'job-confirmation'">Contenu de Job Confirmation</mat-card>
-      <mat-card *ngIf="selectedItem === 'profile'">Contenu du Profile</mat-card>-->
+      <mat-card *ngIf="selectedItem === 'dashboard'">
+        <app-dashboard></app-dashboard>
+      </mat-card>
+
       <!--<mat-card><router-outlet></router-outlet></mat-card>-->
       <!-- Ajouter d'autres éléments de contenu ici pour chaque option -->
 
