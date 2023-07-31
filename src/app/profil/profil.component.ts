@@ -46,4 +46,64 @@ export class ProfilComponent {
       );
     }
   }
+
+  onFilesTitleOfStayUpload(): void {
+    if (this.titleOfStayFile) {
+      this.profilService.uploadTitleOfStayFiles(this.titleOfStayFile).subscribe(
+        () => {
+          // Fichiers téléversés avec succès
+          console.log('Fichiers téléversés avec succès');
+        },
+        (error) => {
+          // Gérer les erreurs de téléversement ici
+          console.error('Erreur lors du téléversement des fichiers :', error);
+        }
+      );
+    }
+  }
+
+  onFilesIdentityCardUpload(): void {
+    if (this.identityCardFile) {
+      this.profilService.uploadIdentityCardFiles(this.identityCardFile).subscribe(
+        () => {
+          // Fichiers téléversés avec succès
+          console.log('Fichiers téléversés avec succès');
+        },
+        (error) => {
+          // Gérer les erreurs de téléversement ici
+          console.error('Erreur lors du téléversement des fichiers :', error);
+        }
+      );
+    }
+  }
+
+  onFilesWorkPermitUpload(): void {
+    if (this.workPermitFile) {
+      this.profilService.uploadWorkPermitFiles(this.workPermitFile).subscribe(
+        () => {
+          // Fichiers téléversés avec succès
+          console.log('Fichiers téléversés avec succès');
+        },
+        (error) => {
+          // Gérer les erreurs de téléversement ici
+          console.error('Erreur lors du téléversement des fichiers :', error);
+        }
+      );
+    }
+  }
+
+  onFilesMotivationLetterUpload(): void {
+    if (this.motivationLetterFile) {
+      this.profilService.uploadMotivationLetterFiles(this.motivationLetterFile).subscribe(
+        () => {
+          // Fichiers téléversés avec succès
+          console.log('Fichiers téléversés avec succès');
+        },
+        (error) => {
+          // Gérer les erreurs de téléversement ici
+          console.error('Erreur lors du téléversement des fichiers :', error);
+        }
+      );
+    }
+  }
 }
