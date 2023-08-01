@@ -12,16 +12,11 @@ export class BookingRequestComponent {
 
   ngOnInit(): void {
   }
-  titre?: string;
-  description?: string;
 
   jobsOffer = {
     title: '',
     description: '',
-    salary: null,
-    location: '',
-    typeContract: '',
-    businessSector: ''
+    location: ''
   };
 
   enregistrerOffre() {

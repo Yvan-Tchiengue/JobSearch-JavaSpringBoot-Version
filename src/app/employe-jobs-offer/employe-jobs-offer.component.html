@@ -6,4 +6,18 @@
    ici la c'est la liste des offres d'emploi soumisent par l'employeur
   </p>
 </div>
+<button mat-raised-button (click)="getJobs()">Voir jobs soumis</button>
+
+<div *ngIf="jobs.length > 0">
+  <mat-card *ngFor="let job of jobs">
+    <mat-card-header>
+      <mat-card-title>Title: {{ job.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Description: {{ job.description }}</p>
+      <p>Location: {{ job.location }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
 

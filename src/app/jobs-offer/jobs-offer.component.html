@@ -4,40 +4,36 @@
   <div style="top: 60px;">
     <!-- Filtrage des offres d'emploi -->
     <mat-form-field>
-      <input matInput placeholder="Titre du poste" [(ngModel)]="titreDuPoste">
-    </mat-form-field>
-    <mat-form-field>
       <input matInput placeholder="Lieu" [(ngModel)]="lieu">
     </mat-form-field>
-    <!-- Ajoutez d'autres filtres de recherche ici -->
 
     <!-- Bouton de recherche -->
     <button mat-raised-button (click)="rechercherJobs()">Rechercher</button>
   </div>
 
   <!-- Liste des offres d'emploi -->
-  <ng-container *ngIf="offres.length > 0">
-    <div *ngFor="let offre of offres">
+  <ng-container *ngIf="jobs.length > 0">
+    <div *ngFor="let job of jobs">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>{{ offre.titre }}</mat-card-title>
-          <mat-card-subtitle>{{ offre.lieu }}</mat-card-subtitle>
+          <mat-card-title>{{ job.title }}</mat-card-title>
+          <mat-card-subtitle>{{ job.location }}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content *ngIf="offre.afficherDetails">
+        <mat-card-content *ngIf="job.description">
           <!-- Contenu détaillé de l'offre d'emploi -->
-          <p>{{ offre.description }}</p>
+          <p>{{ job.description }}</p>
           <!-- Ajoutez d'autres détails de l'offre d'emploi ici -->
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button (click)="afficherDetails(offre)">Voir plus</button>
-          <button mat-button (click)="reduireDetails(offre)">Voir moins</button>
+          <button mat-button (click)="sendCandidature(job)">poser sa candidature</button>
+          <button mat-button (click)="reduireDetails(job)">Voir moins</button>
         </mat-card-actions>
       </mat-card>
     </div>
   </ng-container>
 
   <!-- Message si aucune offre d'emploi n'est trouvée -->
-  <div *ngIf="offres.length === 0">
+  <div *ngIf="jobs.length === 0">
     <p>Aucune offre d'emploi trouvée.</p>
   </div>
 

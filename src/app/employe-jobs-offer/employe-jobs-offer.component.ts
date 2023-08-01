@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {SessionService} from "../shared/session.service";
 
 @Component({
   selector: 'app-employe-jobs-offer',
@@ -6,5 +8,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./employe-jobs-offer.component.css']
 })
 export class EmployeJobsOfferComponent {
+
+  jobs: any[] = []; // Array pour stocker les offres d'emploi
+  private apiUrl = 'http://localhost:3000/api'; // Remplacez ceci par l'URL de votre API backend
+
+  constructor(private http: HttpClient,
+              private authService: SessionService) { }
+
+  ngOnInit(): void {
+    // ne fait rien à l'initialisation
+  }
+
+  getJobs(): void {
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête
+    });
+
+    this.http.get<any[]>(`${this.apiUrl}/myJobsOffer`, {headers}).subscribe((data: any[]) => {
+      this.jobs = data;
+    });
+  }
+
 
 }

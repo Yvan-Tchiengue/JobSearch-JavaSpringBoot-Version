@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { SessionService} from "./session.service";
 
@@ -8,6 +8,8 @@ import { SessionService} from "./session.service";
 })
 export class JobOfferService {
 
+  private apiUrl = 'http://localhost:3000/api'; // Remplacez ceci par l'URL de votre API backend
+
 // Simulez les données des offres d'emploi (vous pouvez les récupérer depuis la base de données ici)
   private offres: any[] = [
     { titre: 'Développeur Web', lieu: 'Paris', avis_favorable: true, description: '...', afficherDetails: false },
@@ -15,11 +17,17 @@ export class JobOfferService {
     // Ajoutez d'autres offres d'emploi ici
   ];
 
-  constructor(private http: HttpClient, private sessionService: SessionService) {
+  constructor(private http: HttpClient,
+              private sessionService: SessionService,
+              private authService: SessionService) {
   }
 
   creerOffre(offreEmploi: any): Observable<any> {
-    return this.http.post('http://localhost:3000/api/offres-emploi', offreEmploi);
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête
+    });
+    return this.http.post(`${this.apiUrl}/booking-request`, offreEmploi, {headers});
   }
 
   creerCompte(rechercheurEmploi: any): Observable<any> {

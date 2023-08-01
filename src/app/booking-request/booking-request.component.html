@@ -5,10 +5,7 @@
   <form (ngSubmit)="submit()">
     <input [(ngModel)]="jobsOffer.title" name="titre" placeholder="Titre" required>
     <textarea [(ngModel)]="jobsOffer.description" name="description" placeholder="Description" required></textarea>
-    <!--<input [(ngModel)]="jobsOffer.salary" name="salaire" placeholder="Salaire" required>-->
     <input [(ngModel)]="jobsOffer.location" name="lieu" placeholder="Lieu" required>
-    <!--<input [(ngModel)]="jobsOffer.typeContract" name="typeContrat" placeholder="Type de contrat" required>-->
-    <!--<input [(ngModel)]="jobsOffer.businessSector" name="secteur" placeholder="Secteur" required>-->
     <button type="submit">Publish the job offer</button>
   </form>
 </div>
