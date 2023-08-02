@@ -1,51 +1,19 @@
-/*.mat-toolbar {
-  background-color: #42F5C5;
+mat-toolbar {
+  background-color: #007bff;
   color: white;
-}
-
-.spacer {
-  flex: 1 1 auto;
-}*/
-
-.mat-toolbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #1976d2;
-  color: #ffffff;
-  padding: 0 20px;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
-.mat-toolbar span {
-  font-size: 20px;
+button[mat-button] {
+  color: white;
   font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 10px;
 }
 
-.mat-toolbar button {
-  color: #ffffff;
-  margin-left: 10px;
-}
-
-.mat-toolbar button:hover {
-  opacity: 0.8;
-}
-
-.spacer {
-  flex: 1;
-}
-
-/* header.component.css */
-
-.mat-toolbar {
-  width: 100%; /* Largeur de 100% pour occuper toute la largeur */
-  position: fixed; /* Fixer la barre d'outils en haut de la page */
-  top: 0; /* Position en haut de la page */
-  left: 0; /* Position à gauche de la page */
-  z-index: 100; /* Assurer que le header est au-dessus du contenu */
-  background-color: #2196f3; /* Couleur de fond bleue (vous pouvez changer cette couleur selon vos préférences) */
-  color: #fff; /* Couleur du texte en blanc (vous pouvez également changer cela) */
-  display: flex; /* Utiliser Flexbox pour gérer le positionnement des éléments dans la barre d'outils */
-  align-items: center; /* Centrer les éléments verticalement dans la barre d'outils */
-  justify-content: space-between; /* Espacement égal des éléments dans la barre d'outils */
-  padding: 0 20px; /* Espacement intérieur gauche et droit de la barre d'outils */
+button[mat-button]:hover {
+  color: #ff1493; /* pink */
 }

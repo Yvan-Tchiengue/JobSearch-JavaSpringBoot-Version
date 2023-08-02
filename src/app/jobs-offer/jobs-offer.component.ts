@@ -11,17 +11,13 @@ import {Observable} from "rxjs";
 })
 export class JobsOfferComponent {
 
-
-  titreDuPoste!: string;
   lieu!: string;
-  // Ajoutez d'autres propriétés de filtre de recherche ici si nécessaire
 
   //offres: any[] = [];
   jobs: any[] = []; // Array pour stocker les offres d'emploi
   private apiUrl = 'http://localhost:3000/api'; // Remplacez ceci par l'URL de votre API backend
 
   constructor(private offreEmploiService: JobOfferService,
-              //private cdr: ChangeDetectorRef,
               private http: HttpClient,
               private authService: SessionService) { }
 
@@ -39,15 +35,16 @@ export class JobsOfferComponent {
     //this.cdr.detectChanges();
   }
 
-  sendCandidature(offre: any):  Observable<any> {
-    //offre.afficherDetails = true;
+
+  sendCandidature(offre: any[]): void{
     console.log(offre);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête
     });
+    //console.log(headers);
+    const tony = "je teste";
 
-    return this.http.post<any>(`${this.apiUrl}/upload-candidature`, offre);
-    //this.cdr.detectChanges();
+    this.http.post(`${this.apiUrl}/upload-candidature`, tony, {headers});
   }
 
   reduireDetails(offre: any): void {

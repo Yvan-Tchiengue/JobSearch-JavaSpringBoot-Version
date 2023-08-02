@@ -11,4 +11,13 @@ import { ViewChild } from '@angular/core';
 })
 export class DashboardComponent {
 
+  userType: string | null | undefined;
+
+  constructor(private sessionService: SessionService) {
+  }
+
+  ngOnInit(): void {
+    this.userType = this.sessionService.getUserType();
+  }
+
 }

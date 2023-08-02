@@ -1,6 +1,51 @@
-.form-container {
+.form-containerrrr {
   margin-top: 64px; /* Cela pourrait varier en fonction de la hauteur réelle de votre mat-toolbar */
   position: relative; /* Ajouté pour le scrolling */
   overflow-y: auto; /* Ajouté pour le scrolling */
   height: calc(100% - 64px); /* Cela calcule la hauteur restante en soustrayant la hauteur de la barre d'outils */
 }
+
+/* CSS */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  width: 80%;
+  max-width: 800px;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-container input[type=file] {
+  border: 2px solid #007bff;
+  padding: 10px;
+  color: #ff1493;
+  width: 70%;
+  margin-bottom: 10px;
+}
+
+.form-container button {
+  background-color: #33ffd1;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #ff1493;
+}
+

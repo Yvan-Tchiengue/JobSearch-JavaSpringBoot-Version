@@ -1,11 +1,7 @@
 <mat-toolbar *ngIf="userType === 'jobseeker'">
-  <button mat-icon-button class="example-icon" routerLink="/dashboard">
-    JobSearch
-  </button>
-
   <!-- Bouton Dashboard -->
   <button mat-button aria-label="Dashboard button" routerLink="/dashboard">
-    Dashboard
+    JobSearch
   </button>
 
   <!-- Bouton Jobs -->
@@ -29,13 +25,8 @@
 </mat-toolbar>
 
 <mat-toolbar *ngIf="userType === 'employe'">
-  <button mat-icon-button class="example-icon" routerLink="/dashboard">
-    JobSearch
-  </button>
-
-  <!-- Bouton Dashboard -->
   <button mat-button aria-label="Dashboard button" routerLink="/dashboard">
-    Dashboard
+    JobSearch
   </button>
 
   <button mat-button aria-label="Dashboard button" routerLink="/booking-request">

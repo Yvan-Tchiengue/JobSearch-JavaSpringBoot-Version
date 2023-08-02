@@ -1,17 +1,12 @@
-<!-- jobs-offer.component.html -->
 <app-header></app-header>
 <div class="jobs-offer">
-  <div style="top: 60px;">
-    <!-- Filtrage des offres d'emploi -->
+  <div class="search">
     <mat-form-field>
-      <input matInput placeholder="Lieu" [(ngModel)]="lieu">
+      <input matInput placeholder="place" [(ngModel)]="lieu">
     </mat-form-field>
-
-    <!-- Bouton de recherche -->
-    <button mat-raised-button (click)="rechercherJobs()">Rechercher</button>
+    <button mat-raised-button (click)="rechercherJobs()">search</button>
   </div>
 
-  <!-- Liste des offres d'emploi -->
   <ng-container *ngIf="jobs.length > 0">
     <div *ngFor="let job of jobs">
       <mat-card>
@@ -20,22 +15,18 @@
           <mat-card-subtitle>{{ job.location }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content *ngIf="job.description">
-          <!-- Contenu détaillé de l'offre d'emploi -->
           <p>{{ job.description }}</p>
-          <!-- Ajoutez d'autres détails de l'offre d'emploi ici -->
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button (click)="sendCandidature(job)">poser sa candidature</button>
-          <button mat-button (click)="reduireDetails(job)">Voir moins</button>
+          <button mat-raised-button="" (click)="sendCandidature(job)">apply now</button>
         </mat-card-actions>
       </mat-card>
     </div>
   </ng-container>
 
-  <!-- Message si aucune offre d'emploi n'est trouvée -->
-  <div *ngIf="jobs.length === 0">
-    <p>Aucune offre d'emploi trouvée.</p>
+  <div class="no-job" *ngIf="jobs.length === 0">
+    <p>No jobs found.</p>
   </div>
 
-
 </div>
+<app-footer></app-footer>
