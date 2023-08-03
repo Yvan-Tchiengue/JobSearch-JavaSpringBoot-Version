@@ -37,6 +37,7 @@ import { EmployeJobsOfferComponent } from './employe-jobs-offer/employe-jobs-off
 import { ApplicationComponent } from './application/application.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { FooterComponent } from './footer/footer.component';
     EmployeJobsOfferComponent,
     ApplicationComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,

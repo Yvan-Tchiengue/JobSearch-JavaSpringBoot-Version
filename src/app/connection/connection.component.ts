@@ -35,21 +35,12 @@ export class ConnectionComponent {
         //alert('Authentification réussie!' +JSON.stringify(response));
         this.router.navigate(['/dashboard']);
       },
-      err => alert('Erreur lors de l\'authentification: ' + err.error.error + JSON.stringify(err))
+        err => {
+        const errorMessage = 'Erreur lors de l\'authentification: ' + err.error.error + JSON.stringify(err);
+        const errorMessage1 ="Authentication error: wrong email address or password!"
+        alert(errorMessage1);
+      }
+
     );
   }
-
-  /*demanderCalcul() {
-    const url = 'http://localhost:3000/api/calcul'; // Remplacez l'URL par celle de votre serveur Node.js
-
-    this.http.get<number>(url).subscribe(
-      (resultat) => {
-        this.reponse = resultat;
-      },
-      (erreur) => {
-        console.error('Une erreur s\'est produite lors de la demande de calcul :', erreur);
-      }
-    );
-  }*/
-
 }

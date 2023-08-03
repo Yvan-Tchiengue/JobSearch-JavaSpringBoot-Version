@@ -14,6 +14,7 @@ import {EmployeJobsOfferComponent} from "./employe-jobs-offer/employe-jobs-offer
 import {ApplicationComponent} from "./application/application.component";
 import {HOME} from "@angular/cdk/keycodes";
 import {HomeComponent} from "./home/home.component";
+import {ErrorDialogComponent} from "./error-dialog/error-dialog.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/connection', pathMatch: 'full'},

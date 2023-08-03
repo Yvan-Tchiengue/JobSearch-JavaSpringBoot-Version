@@ -1,22 +1,25 @@
 <app-header></app-header>
-
-<div class="employe-jobs-offer">
-  <h1 style="text-align: center">this is the list of job offers submitted by the employer</h1>
-</div>
-<button mat-raised-button (click)="getJobs()">See jobs submitted</button>
-
-<ng-container *ngIf="jobs.length > 0">
-  <div *ngFor="let job of jobs">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{ job.title }}</mat-card-title>
-        <mat-card-subtitle>{{ job.location }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content *ngIf="job.description">
-        <p>{{ job.description }}</p>
-      </mat-card-content>
-    </mat-card>
+<div class="content">
+  <div class="employe-jobs-offer">
+    <h1 style="text-align: center">this is the list of job offers submitted by the employer</h1>
   </div>
-</ng-container>
-<app-footer></app-footer>
+  <button mat-raised-button (click)="getJobs()">See jobs submitted</button>
+
+  <ng-container *ngIf="jobs.length > 0">
+    <div *ngFor="let job of jobs">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ job.title }}</mat-card-title>
+          <mat-card-subtitle>{{ job.location }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content *ngIf="job.description">
+          <p>{{ job.description }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-container>
+</div>
+<footer class="footer">
+  <p>Yvan Richnel Tchiengue. Copyright &copy; 2023</p>
+</footer>
 

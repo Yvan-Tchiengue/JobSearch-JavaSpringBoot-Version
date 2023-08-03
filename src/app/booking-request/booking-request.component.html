@@ -1,12 +1,18 @@
 <app-header></app-header>
 <h2>Request for Manpower</h2>
-<form (ngSubmit)="submit()">
+<form (ngSubmit)="submit()" #loginForm="ngForm">
   <span>Title</span>
-  <input [(ngModel)]="jobsOffer.title" name="titre" placeholder="Title" required>
+  <input [(ngModel)]="jobsOffer.title" name="titre" placeholder="Title" required #titleField="ngModel">
+  <span class="error" style="color: red" *ngIf="titleField.errors?.['required'] && titleField.touched">Title is required</span>
   <span>Description</span>
-  <input [(ngModel)]="jobsOffer.description" name="description" placeholder="Description" required>
+  <input [(ngModel)]="jobsOffer.description" name="description" placeholder="Description" required #descriptionField="ngModel">
+  <span class="error" style="color: red" *ngIf="descriptionField.errors?.['required'] && descriptionField.touched">Description is required</span>
   <span>Location</span>
-  <input [(ngModel)]="jobsOffer.location" name="lieu" placeholder="Location" required>
-  <button type="submit">Publish the Job Offer</button>
+  <input [(ngModel)]="jobsOffer.location" name="lieu" placeholder="Location" required #locationField="ngModel">
+  <span class="error" style="color: red" *ngIf="locationField.errors?.['required'] && locationField.touched">Location is required</span>
+  <button type="submit" [disabled]="!loginForm.valid">Publish the Job Offer</button>
 </form>
-<app-footer></app-footer>
+<footer class="footer">
+  <p>Yvan Richnel Tchiengue. Copyright &copy; 2023</p>
+</footer>
+

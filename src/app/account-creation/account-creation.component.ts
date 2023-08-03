@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JobOfferService} from "../shared/job-offer.service";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -9,10 +10,18 @@ import { JobOfferService} from "../shared/job-offer.service";
 })
 export class AccountCreationComponent {
 
+  registerForm!: FormGroup;  // Declare registerForm here
 
-  constructor(private jobSeekerService: JobOfferService) { }
+  constructor(private jobSeekerService: JobOfferService,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      namee: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      type_of_account: ['', Validators.required]
+    });
   }
 
   jobSeeker = {
@@ -27,11 +36,12 @@ export class AccountCreationComponent {
     this.jobSeekerService.creerCompte(this.jobSeeker).subscribe(
       response => {
         //alert("la reponse du server est: " + response + JSON.stringify(response));
-        alert('Compte créé avec succès!');
+        alert('Account created successfully!');
       },
       error => {
         //alert("malheureusement le server me renvoit l'errur suivante: "+ error + JSON.stringify(error) + JSON.stringify(this.jobSeeker));
-        alert('Erreur lors de la création du compte: ' + error.message);
+        //alert('Account creation error: ' + error.message);
+        alert('Account creation error');
       });
   }
 
