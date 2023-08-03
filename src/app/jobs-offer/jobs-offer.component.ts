@@ -44,12 +44,12 @@ export class JobsOfferComponent {
     //console.log(headers);
     const tony = "je teste";
 
-    this.http.post(`${this.apiUrl}/upload-candidature`, tony, {headers});
+    this.http.post(`${this.apiUrl}/upload-candidature`, tony, {headers}).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.error(error);
+      });
   }
-
-  reduireDetails(offre: any): void {
-    offre.afficherDetails = false;
-    //this.cdr.detectChanges();
-  }
-
 }
