@@ -1,23 +1,22 @@
 <app-header></app-header>
 
 <div class="employe-jobs-offer">
-  <h1>Bienvenue sur notre plateforme d'emploi</h1>
-  <p>
-   ici la c'est la liste des offres d'emploi soumisent par l'employeur
-  </p>
+  <h1 style="text-align: center">this is the list of job offers submitted by the employer</h1>
 </div>
-<button mat-raised-button (click)="getJobs()">Voir jobs soumis</button>
+<button mat-raised-button (click)="getJobs()">See jobs submitted</button>
 
-<div *ngIf="jobs.length > 0">
-  <mat-card *ngFor="let job of jobs">
-    <mat-card-header>
-      <mat-card-title>Title: {{ job.title }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>Description: {{ job.description }}</p>
-      <p>Location: {{ job.location }}</p>
-    </mat-card-content>
-  </mat-card>
-</div>
+<ng-container *ngIf="jobs.length > 0">
+  <div *ngFor="let job of jobs">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ job.title }}</mat-card-title>
+        <mat-card-subtitle>{{ job.location }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content *ngIf="job.description">
+        <p>{{ job.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-container>
 <app-footer></app-footer>
 

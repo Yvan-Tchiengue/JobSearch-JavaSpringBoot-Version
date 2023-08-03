@@ -1,12 +1,12 @@
 <app-header></app-header>
-
-<div class="booking-request">
-  <h2>Request for manpower.</h2>
-  <form (ngSubmit)="submit()">
-    <input [(ngModel)]="jobsOffer.title" name="titre" placeholder="Titre" required>
-    <textarea [(ngModel)]="jobsOffer.description" name="description" placeholder="Description" required></textarea>
-    <input [(ngModel)]="jobsOffer.location" name="lieu" placeholder="Lieu" required>
-    <button type="submit">Publish the job offer</button>
-  </form>
-</div>
+<h2>Request for Manpower</h2>
+<form (ngSubmit)="submit()">
+  <span>Title</span>
+  <input [(ngModel)]="jobsOffer.title" name="titre" placeholder="Title" required>
+  <span>Description</span>
+  <input [(ngModel)]="jobsOffer.description" name="description" placeholder="Description" required>
+  <span>Location</span>
+  <input [(ngModel)]="jobsOffer.location" name="lieu" placeholder="Location" required>
+  <button type="submit">Publish the Job Offer</button>
+</form>
 <app-footer></app-footer>

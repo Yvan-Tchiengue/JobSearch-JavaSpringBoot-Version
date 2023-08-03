@@ -27,7 +27,7 @@ button:hover {
 mat-card {
   margin-bottom: 20px;
   border-radius: 8px;
-  background-color: white;
+  background-color: #001F3F;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   left: 20px;
   max-width: 1235px;
@@ -37,6 +37,14 @@ mat-card-title {
   color: #ff1493;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+mat-card-subtitle{
+  color: white;
+}
+
+mat-card-content{
+  color: white;
 }
 
 mat-card-actions button {

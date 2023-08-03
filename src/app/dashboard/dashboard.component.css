@@ -8,8 +8,6 @@ body {
   flex-direction: column;
 }
 
-
-
 .welcome-message {
   padding: 80px;
   background: white;
@@ -21,7 +19,7 @@ body {
 
 .welcome-message h1 {
   position: center;
-  color: #007bff;
+  color: #001F3F;
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
