@@ -1,4 +1,58 @@
-.confirmation {
+:host{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.search{
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: 200px;
+  margin-right: 10px;
+}
+
+.no-job{
+  margin-left: 20px;
+}
+
+button:hover {
+  background-color: #ff1493;
+  color: white;
+}
+
+mat-card {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #001F3F;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  left: 20px;
+  max-width: 1235px;
+}
+
+mat-card-title {
+  color: #ff1493;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+mat-card-subtitle{
+  color: white;
+}
+
+mat-card-content{
+  color: white;
+}
+
+mat-card-actions button {
+  margin-right: 10px;
+}
+
+.jobs-offer{
   padding: 80px;
   background: white;
   margin: 10px;
@@ -7,17 +61,6 @@
   flex-grow: 1;
 
   flex: 1 0 auto; /* Cette ligne fait que le contenu s'étendra pour prendre tout l'espace disponible, laissant le footer en bas */
-  margin-top: 64px; /* Cela pourrait varier en fonction de la hauteur réelle de votre mat-toolbar */
-  position: relative; /* Ajouté pour le scrolling */
-  overflow-y: auto; /* Ajouté pour le scrolling */
-  height: calc(100% - 64px); /* Cela calcule la hauteur restante en soustrayant la hauteur de la barre d'outils */
-}
-
-:host{
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
 }
 
 .footer {
@@ -30,4 +73,17 @@
   text-transform: uppercase;
   flex-shrink: 0; /* Cette ligne empêche le footer de rétrécir si le contenu est grand */
 }
+
+.accepted {
+  color: green;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.rejected {
+  color: red;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 

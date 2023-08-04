@@ -1,19 +1,31 @@
 <app-header></app-header>
 <div class="form-container">
   <form (submit)="onFilesIdentityCardUpload()">
-    <input type="file" (change)="onIdentityCardSelected($event)" accept=".pdf">
+    <div class="form-group">
+      <span>Identity Card</span>
+      <input type="file" (change)="onIdentityCardSelected($event)" accept=".pdf">
+    </div>
     <button type="submit">send</button>
   </form>
   <form (submit)="onFilesMotivationLetterUpload()">
-    <input type="file" (change)="onMotivationLetterSelected($event)" accept=".pdf">
+    <div class="form-group">
+      <span>CV</span>
+      <input type="file" (change)="onMotivationLetterSelected($event)" accept=".pdf">
+    </div>
     <button type="submit">send</button>
   </form>
   <form (submit)="onFilesTitleOfStayUpload()">
-    <input type="file" (change)="onTitleOfStaySelected($event)" accept=".pdf">
+    <div class="form-group">
+      <span>Title of Stay</span>
+      <input type="file" (change)="onTitleOfStaySelected($event)" accept=".pdf">
+    </div>
     <button type="submit">send</button>
   </form>
   <form (submit)="onFilesWorkPermitUpload()">
-    <input type="file" (change)="onWorkPermitSelected($event)" accept=".pdf">
+    <div class="form-group">
+      <span>Work Permit</span>
+      <input type="file" (change)="onWorkPermitSelected($event)" accept=".pdf">
+    </div>
     <button type="submit">send</button>
   </form>
 </div>

@@ -29,6 +29,7 @@ export class JobsOfferComponent {
 
     this.http.get<any[]>(`${this.apiUrl}/jobsOffer`).subscribe((data: any[]) => {
       this.jobs = data;
+      console.log(this.jobs);
     });
     // Appelez le service pour rechercher les offres d'emploi en fonction des filtres de recherche
     //this.offres = this.offreEmploiService.rechercherOffres(this.titreDuPoste, this.lieu);
@@ -42,9 +43,8 @@ export class JobsOfferComponent {
       'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête
     });
     //console.log(headers);
-    const tony = "je teste";
 
-    this.http.post(`${this.apiUrl}/upload-candidature`, tony, {headers}).subscribe(
+    this.http.post(`${this.apiUrl}/upload-candidature`, offre, {headers}).subscribe(
       response => {
         console.log(response);
       },

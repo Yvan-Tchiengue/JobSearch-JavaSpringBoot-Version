@@ -111,6 +111,38 @@ con.connect(function(err) {
     });
 });*/
 
+//je veux supprimer toutes les informations de la table candidatures avant de continuer
+/*con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+
+    con.query('DELETE FROM candidatures', (err, result) => {
+        if (err) throw err;
+        console.log("All records deleted from candidatures");
+    });
+});*/
+
+
+//modifier la table candidatures pour ajouter le employerID
+/*con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+
+    con.query('ALTER TABLE candidatures ADD COLUMN employerId INT(11);', (err, result) => {
+        if (err) throw err;
+        console.log("Column employerId added to candidatures");
+    });
+});*/
+
+
+//modifier la table candidatures pour ajouter la confirmation
+/*con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+
+    con.query('ALTER TABLE candidatures ADD COLUMN confirmation VARCHAR (255);', (err, result) => {
+        if (err) throw err;
+        console.log("Column confirmation added to candidatures");
+    });
+});*/
+
 //ajout de nouvelles colonnes dans la table jobseeker
 /*con.query('USE JobSearch', (err, result) => {
     if (err) throw err;
@@ -165,6 +197,107 @@ app.post('/api/jobs-offer', (req, res) => {
   });
 });
 
+/*app.post('/api/accept-candidatures', (req, res) => {
+    const jobOffer = req.body;
+    const query = 'INSERT INTO JobOffer SET ?';
+    con.query(query, jobOffer, (err, result) => {
+        if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Error when creating the job offer' });
+            return;
+        }
+        res.json({ success: true });
+    });
+});*/
+
+app.post('/api/reject-candidatures', (req, res) => {
+  const jobOffer = req.body;
+  console.log('demande de rejet de cette candidature bien recu');
+  // Décodez le token JWT
+  const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
+  console.log(bearerHeader);
+  const bearerToken = bearerHeader.split(' ')[1];
+  console.log(bearerToken);
+  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  // Sauvegarde les informations dans des variables
+  const userId = bearerObject.userID;
+  const userType = bearerObject.userType;
+  const jwtToken = bearerObject.token;
+
+  const title = req.body.title ;
+  const description = req.body.description;
+  const location = req.body.location;
+  const jobsID = req.body.id ;
+  const employerID = req.body.employerId;
+
+
+  // Affiche les informations extraites
+  console.log(`User ID: ${userId}`);
+  console.log(`User Type: ${userType}`);
+  console.log(`JWT Token: ${jwtToken}`);
+
+  console.log(`Description: ${description}`);
+  console.log(`Location: ${location}`);
+  console.log(`JobsID: ${jobsID}`);
+  console.log(`EmployerID: ${employerID}`);
+  console.log(`Title: ${title}`);
+
+  con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+    const note = "rejected"
+
+    let sqlUpdate = `UPDATE candidatures SET confirmation = ? WHERE jobOfferId = ?`;
+    con.query(sqlUpdate, [note, jobsID], (err, result) => {
+      if (err) throw err;
+      console.log("confirmation updated in candidatures for user with ID "+userId);
+    });
+  });
+});
+
+app.post('/api/accept-candidatures', (req, res) => {
+  const jobOffer = req.body;
+  console.log('demande dacceptation de cette candidature bien recue');
+  // Décodez le token JWT
+  const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
+  console.log(bearerHeader);
+  const bearerToken = bearerHeader.split(' ')[1];
+  console.log(bearerToken);
+  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  // Sauvegarde les informations dans des variables
+  const userId = bearerObject.userID;
+  const userType = bearerObject.userType;
+  const jwtToken = bearerObject.token;
+
+  const title = req.body.title ;
+  const description = req.body.description;
+  const location = req.body.location;
+  const jobsID = req.body.id ;
+  const employerID = req.body.employerId;
+
+
+  // Affiche les informations extraites
+  console.log(`User ID: ${userId}`);
+  console.log(`User Type: ${userType}`);
+  console.log(`JWT Token: ${jwtToken}`);
+
+  console.log(`Description: ${description}`);
+  console.log(`Location: ${location}`);
+  console.log(`JobsID: ${jobsID}`);
+  console.log(`EmployerID: ${employerID}`);
+  console.log(`Title: ${title}`);
+
+  con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+    const note = "accepted"
+
+    let sqlUpdate = `UPDATE candidatures SET confirmation = ? WHERE jobOfferId = ?`;
+    con.query(sqlUpdate, [note, jobsID], (err, result) => {
+      if (err) throw err;
+      console.log("confirmation updated in candidatures for user with ID "+userId);
+    });
+  });
+});
+
 //affiche tous les jobs disponibles dans la base de données pour une possible candidature
 app.get('/api/jobsOffer', (req, res) => {
 
@@ -180,6 +313,161 @@ app.get('/api/jobsOffer', (req, res) => {
     });
   });
 
+});
+
+app.get('/api/see-confirmation', (req, res) => {
+
+  console.log('demande see confirmation tres bien recu');
+
+  // Décodez le token JWT
+  const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
+  console.log(bearerHeader);
+  const bearerToken = bearerHeader.split(' ')[1];
+  console.log(bearerToken);
+  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  // Sauvegarde les informations dans des variables
+  const userId = bearerObject.userID;
+  const userType = bearerObject.userType;
+  const jwtToken = bearerObject.token;
+
+  // Affiche les informations extraites
+  console.log(`User ID: ${userId}`);
+  console.log(`User Type: ${userType}`);
+  console.log(`JWT Token: ${jwtToken}`);
+
+  /*con.query('USE JobSearch', (err) => {
+      if (err) {
+          console.error("Error using database:", err);
+          throw err;
+      }
+
+      const notes = "accepted"
+      console.log("UserId is:", userId);
+      let sqlSelect = `SELECT jobOfferId FROM candidatures WHERE confirmation = ? AND jobSeekerId = ?`;
+      con.query(sqlSelect,[notes ,userId], (err, results) => {
+          if (err) throw err;
+          console.log(results);
+
+          let allJobOffers = [];
+
+          // keep track of remaining async operations
+          let remaining = results.length;
+          if (remaining === 0) {
+              res.json(allJobOffers);
+              return;
+          }
+          results.forEach(result => {
+              let sqlSelectJob = `SELECT title, description, location, id, employerId FROM joboffer WHERE id = ?`;
+              con.query(sqlSelectJob, [result.jobOfferId], (err, jobOffers) => {
+                  if (err) throw err;
+                  allJobOffers.push(...jobOffers);
+                  remaining -= 1;
+                  if (remaining === 0) {
+                      // send response when all async operations finished
+                      res.json(allJobOffers);
+                  }
+              });
+          });
+      });
+  });*/
+
+  con.query('USE JobSearch', (err) => {
+    if (err) {
+      console.error("Error using database:", err);
+      throw err;
+    }
+
+    console.log("UserId is:", userId);
+    let sqlSelect = `SELECT jobOfferId, confirmation FROM candidatures WHERE jobSeekerId = ? AND confirmation IS NOT NULL`;
+    con.query(sqlSelect, [userId], (err, results) => {
+      if (err) throw err;
+      console.log(results);
+
+      let allConfirmationsAndOffers = [];
+
+      // keep track of remaining async operations
+      let remaining = results.length;
+      if (remaining === 0) {
+        res.json(allConfirmationsAndOffers);
+        return;
+      }
+      results.forEach(result => {
+        let sqlSelectJob = `SELECT title, description, location FROM joboffer WHERE id = ?`;
+        con.query(sqlSelectJob, [result.jobOfferId], (err, jobOffers) => {
+          console.log(jobOffers);
+          if (err) throw err;
+          jobOffers.forEach(jobOffer => {
+            jobOffer.confirmation = result.confirmation;
+            allConfirmationsAndOffers.push(jobOffer);
+          });
+          remaining -= 1;
+          if (remaining === 0) {
+            // send response when all async operations finished
+            console.log(allConfirmationsAndOffers);
+            res.json(allConfirmationsAndOffers);
+          }
+        });
+      });
+    });
+  });
+
+
+});
+
+
+app.get('/api/myJobsCandidatures', (req, res) => {
+
+  console.log('demande de voir les candidatures bien recu');
+  // Décodez le token JWT
+  const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
+  console.log(bearerHeader);
+  const bearerToken = bearerHeader.split(' ')[1];
+  console.log(bearerToken);
+  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  // Sauvegarde les informations dans des variables
+  const userId = bearerObject.userID;
+  const userType = bearerObject.userType;
+  const jwtToken = bearerObject.token;
+
+  // Affiche les informations extraites
+  console.log(`User ID: ${userId}`);
+  console.log(`User Type: ${userType}`);
+  console.log(`JWT Token: ${jwtToken}`);
+
+  con.query('USE JobSearch', (err) => {
+    if (err) {
+      console.error("Error using database:", err);
+      throw err;
+    }
+
+    console.log("UserId is:", userId);
+    let sqlSelect = `SELECT candidatures.jobOfferId FROM candidatures WHERE employerId = ?`;
+    con.query(sqlSelect,[userId], (err, results) => {
+      if (err) throw err;
+      console.log(results);
+
+      let allJobOffers = [];
+
+      // keep track of remaining async operations
+      let remaining = results.length;
+      if (remaining === 0) {
+        res.json(allJobOffers);
+        return;
+      }
+      results.forEach(result => {
+        let sqlSelectJob = `SELECT title, description, location, id, employerId FROM joboffer WHERE id = ?`;
+        con.query(sqlSelectJob, [result.jobOfferId], (err, jobOffers) => {
+          if (err) throw err;
+          allJobOffers.push(...jobOffers);
+          remaining -= 1;
+          if (remaining === 0) {
+            // send response when all async operations finished
+            res.json(allJobOffers);
+          }
+        });
+      });
+    });
+  });
 });
 
 //recherche des jobs enregistres par un employer specifique
@@ -216,9 +504,47 @@ app.get('/api/myJobsOffer', (req, res) => {
 });
 
 app.post('/api/upload-candidature', (req, res) => {
-  console.log("Bewerbung envoyé");
-  console.log(req.body);
+  console.log('Bewerbung envoyé');
+  console.log(JSON.stringify(req.body));
+  console.log(req.headers);
+
+  const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
+  console.log(bearerHeader);
+  const bearerToken = bearerHeader.split(' ')[1];
+  console.log(bearerToken);
+  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  // Sauvegarde les informations dans des variables
+  const userId = bearerObject.userID;
+  const userType = bearerObject.userType;
+  const jwtToken = bearerObject.token;
+  const title = req.body.title ;
+  const description = req.body.description;
+  const location = req.body.location;
+  const jobsID = req.body.id ;
+  const employerID = req.body.employerId;
+
+  // Affiche les informations extraites
+  console.log(`User ID: ${userId}`);
+  console.log(`User Type: ${userType}`);
+  console.log(`Title: ${title}`);
+
+  console.log(`Description: ${description}`);
+  console.log(`Location: ${location}`);
+  console.log(`JobsID: ${jobsID}`);
+  console.log(`EmployerID: ${employerID}`);
+
+  con.query('USE JobSearch', (err) => {
+    if (err) throw err;
+
+    let sqlInsert = `INSERT INTO candidatures (jobSeekerId, jobOfferId, employerId ) VALUES (?, ?, ?)`;
+    con.query(sqlInsert, [userId, jobsID, employerID], (err, result) => {
+      if (err) throw err;
+      console.log("candidature sent for jobSeeker with ID: " + userId);
+    });
+  });
+
 });
+
 
 app.post('/api/booking-request', (req, res) => {
   console.log('booking request bien recu');
