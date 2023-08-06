@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {SessionService} from "../shared/session.service";
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-application',
@@ -25,6 +26,7 @@ export class ApplicationComponent {
 
     this.http.get<any[]>(`${this.apiUrl}/myJobsCandidatures`, {headers}).subscribe((data: any[]) => {
       this.jobs = data;
+      console.log(data);
     });
 
   }
@@ -58,6 +60,48 @@ export class ApplicationComponent {
         console.error(error);
       });
 
+  }
+
+  idCardDownload(job: any) {
+
+    console.log("verification du fichier ",job);
+    const jobseek = job.jobSeekerId;
+    const url = `assets/identitycard${jobseek}.pdf`; // Utilisez les backticks ici
+
+    this.http.get(url, { responseType: 'blob' }).subscribe(blob => {
+      saveAs(blob, `identitycard_${jobseek}.pdf`); // Le fichier sera téléchargé avec ce nom
+    });
+  }
+
+  workPermitDownload(job: any) {
+
+    console.log("verification du fichier ",job);
+    const jobseek = job.jobSeekerId;
+    const url = `assets/workpermit${jobseek}.pdf`; // Utilisez les backticks ici
+
+    this.http.get(url, { responseType: 'blob' }).subscribe(blob => {
+      saveAs(blob, `workpermit_${jobseek}.pdf`); // Le fichier sera téléchargé avec ce nom
+    });
+  }
+  cvDownload(job: any) {
+
+    console.log("verification du fichier ",job);
+    const jobseek = job.jobSeekerId;
+    const url = `assets/cv${jobseek}.pdf`; // Utilisez les backticks ici
+
+    this.http.get(url, { responseType: 'blob' }).subscribe(blob => {
+      saveAs(blob, `cv_${jobseek}.pdf`); // Le fichier sera téléchargé avec ce nom
+    });
+  }
+  titleOfStayDownload(job: any) {
+
+    console.log("verification du fichier ",job);
+    const jobseek = job.jobSeekerId;
+    const url = `assets/titleofstay${jobseek}.pdf`; // Utilisez les backticks ici
+
+    this.http.get(url, { responseType: 'blob' }).subscribe(blob => {
+      saveAs(blob, `titleofstay_${jobseek}.pdf`); // Le fichier sera téléchargé avec ce nom
+    });
   }
 
 }

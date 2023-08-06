@@ -9,9 +9,18 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 app.use(cors());
 const multer = require('multer');
+const fs = require('fs');
+const { google } = require('googleapis');
+const axios = require('axios');
+const qs = require('querystring');
 
 var mysql = require('mysql');
 const SECRET_KEY = "secretKey"; // Votre clé secrète pour décoder le JWT
+const CLIENT_SECRET = "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";
+const CLIENT_ID = "430293578110-s62eca6u9a3r6ohg3h2akjanugcgiv0u.apps.googleusercontent.com";
+const CLIENT_NAME = "jobsearch";
+const ORIGIN_URI = "http://localhost:4200";
+const REDIRECT_URL = "http://localhost:3000/oauth2callback";
 
 
 var con = mysql.createConnection({
@@ -121,6 +130,65 @@ con.connect(function(err) {
     });
 });*/
 
+/*con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+
+    con.query('ALTER TABLE jobseeker ADD COLUMN cv BLOB', (err, result) => {
+        if (err) throw err;
+        console.log("Column 'cv' added to jobseeker");
+    });
+});*/
+
+
+//suppression des tables cv pour creer une nouvelle.
+/*con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+
+    con.query('ALTER TABLE jobseeker DROP COLUMN cv', (err, result) => {
+        if (err) throw err;
+        console.log("Column 'tony' deleted from jobseeker");
+    });
+});*/
+
+//suppression des tables titleofstay pour creer une nouvelle.
+/*con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+
+    con.query('ALTER TABLE jobseeker DROP COLUMN titleofstay', (err, result) => {
+        if (err) throw err;
+        console.log("Column 'tony' deleted from jobseeker");
+    });
+});*/
+
+//suppression des tables workpermit pour creer une nouvelle.
+/*con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+
+    con.query('ALTER TABLE jobseeker DROP COLUMN workpermit', (err, result) => {
+        if (err) throw err;
+        console.log("Column 'tony' deleted from jobseeker");
+    });
+});*/
+
+//suppression des tables identitycard pour creer une nouvelle.
+/*con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+
+    con.query('ALTER TABLE jobseeker DROP COLUMN identitycard', (err, result) => {
+        if (err) throw err;
+        console.log("Column 'tony' deleted from jobseeker");
+    });
+});*/
+
+//suppression des tables motivationLetter pour creer une nouvelle.
+/*con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+
+    con.query('ALTER TABLE jobseeker DROP COLUMN motivationLetter', (err, result) => {
+        if (err) throw err;
+        console.log("Column 'tony' deleted from jobseeker");
+    });
+});*/
 
 //modifier la table candidatures pour ajouter le employerID
 /*con.query('USE JobSearch', (err, result) => {
@@ -178,11 +246,6 @@ con.connect(function(err) {
         console.log("Candidatures table created");
     });
 }); */
-
-app.get('/api/calcul', (req, res) => {
-  const resultat = 2 + 4;
-  res.send(resultat.toString());
-});
 
 app.post('/api/jobs-offer', (req, res) => {
   const jobOffer = req.body;
@@ -441,7 +504,7 @@ app.get('/api/myJobsCandidatures', (req, res) => {
     }
 
     console.log("UserId is:", userId);
-    let sqlSelect = `SELECT candidatures.jobOfferId FROM candidatures WHERE employerId = ?`;
+    let sqlSelect = `SELECT candidatures.jobOfferId, candidatures.jobSeekerId FROM candidatures WHERE employerId = ?`;
     con.query(sqlSelect,[userId], (err, results) => {
       if (err) throw err;
       console.log(results);
@@ -458,10 +521,18 @@ app.get('/api/myJobsCandidatures', (req, res) => {
         let sqlSelectJob = `SELECT title, description, location, id, employerId FROM joboffer WHERE id = ?`;
         con.query(sqlSelectJob, [result.jobOfferId], (err, jobOffers) => {
           if (err) throw err;
-          allJobOffers.push(...jobOffers);
+          // Ensure jobOffers contains a valid result before processing
+          if (jobOffers && jobOffers[0]) {
+            const jobOffer = jobOffers[0];
+            jobOffer.jobSeekerId = result.jobSeekerId;  // Adding jobseekerId to the job offer data
+            allJobOffers.push(jobOffer);
+          }
           remaining -= 1;
+          //allJobOffers.push(...jobOffers);
+          //remaining -= 1;
           if (remaining === 0) {
             // send response when all async operations finished
+            console.log(allJobOffers);
             res.json(allJobOffers);
           }
         });
@@ -644,10 +715,14 @@ app.post('/api/account-creating', async (req, res) => {
 //stockage du du titre de sejour dans le disque dur et son lien dans la base de données
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Fichiers-JobSearch');
+    cb(null, 'C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Bachelorarbeit-JobSearch/src/assets');
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    const bearerHeaderMLetter = req.headers['authorization'];
+    const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
+    const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
+    const userIdMLetter = bearerObjectMLetter.userID;
+    cb(null, `titleofstay${userIdMLetter}.pdf`);
   }
 });
 
@@ -677,12 +752,10 @@ app.post('/api/uploadTitleOfStayFiles', upload.single('titleOfStay'), async (req
 
 
   // Construisez le chemin d'accès au fichier
-  const filePath = `C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Fichiers-JobSearch/${req.file.filename}`;
+  const filePath = `C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Bachelorarbeit-JobSearch/src/assets/titleofstay${userId}`;
 
   con.query('USE JobSearch', (err, result) => {
     if (err) throw err;
-
-    let chemindacces = "votre chemin d'accès ici";  // Remplacez par votre chemin d'accès
 
     let sqlUpdate = `UPDATE ${userType} SET titleofstay = ? WHERE id = ?`;
     con.query(sqlUpdate, [filePath, 1], (err, result) => {
@@ -695,10 +768,14 @@ app.post('/api/uploadTitleOfStayFiles', upload.single('titleOfStay'), async (req
 // sauvegarde de la carte d'identité
 const storageICard = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Fichiers-JobSearch');
+    cb(null, 'C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Bachelorarbeit-JobSearch/src/assets');
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    const bearerHeaderMLetter = req.headers['authorization'];
+    const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
+    const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
+    const userIdMLetter = bearerObjectMLetter.userID;
+    cb(null, `identitycard${userIdMLetter}.pdf`);
   }
 });
 
@@ -726,9 +803,7 @@ app.post('/api/uploadIdentityCardFiles', uploadICard.single('identityCard'), asy
   console.log(`User Type: ${userTypeICard}`);
   console.log(`JWT Token: ${jwtTokenICard}`);
 
-
-  // Construisez le chemin d'accès au fichier
-  const filePathICard = `C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Fichiers-JobSearch/${req.file.filename}`;
+  const filePathICard = `C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Bachelorarbeit-JobSearch/src/assets/identitycard${userIdICard}`;
 
   con.query('USE JobSearch', (err, result) => {
     if (err) throw err;
@@ -744,10 +819,14 @@ app.post('/api/uploadIdentityCardFiles', uploadICard.single('identityCard'), asy
 //stockage du permit de travail
 const storageWPermit = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Fichiers-JobSearch');
+    cb(null, 'C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Bachelorarbeit-JobSearch/src/assets');
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    const bearerHeaderMLetter = req.headers['authorization'];
+    const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
+    const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
+    const userIdMLetter = bearerObjectMLetter.userID;
+    cb(null, `workpermit${userIdMLetter}.pdf`);
   }
 });
 
@@ -777,12 +856,12 @@ app.post('/api/uploadWorkPermitFiles', uploadWPermit.single('workPermit'), async
 
 
   // Construisez le chemin d'accès au fichier
-  const filePathWPermit = `C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Fichiers-JobSearch/${req.file.filename}`;
+  const filePathWPermit = `C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Bachelorarbeit-JobSearch/src/assets/workpermit${userIdWPermit}`;
 
   con.query('USE JobSearch', (err, result) => {
     if (err) throw err;
 
-    let sqlUpdate = `UPDATE ${userTypeWPermit} SET workpermit = ? WHERE id = ?`;
+    let sqlUpdate = `UPDATE ${userTypeWPermit} SET cv = ? WHERE id = ?`;
     con.query(sqlUpdate, [filePathWPermit, userIdWPermit], (err, result) => {
       if (err) throw err;
       console.log("Work Permit updated in JobSeeker for user with ID ", userIdWPermit);
@@ -793,10 +872,17 @@ app.post('/api/uploadWorkPermitFiles', uploadWPermit.single('workPermit'), async
 //reception et stockage de la lettre de motivation breff ca ou bien le cv
 const storageMLetter = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Fichiers-JobSearch');
+    cb(null, 'C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Bachelorarbeit-JobSearch/src/assets');
   },
+  /*filename: (req, file, cb) => {
+      cb(null, file.originalname);
+  }*/
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    const bearerHeaderMLetter = req.headers['authorization'];
+    const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
+    const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
+    const userIdMLetter = bearerObjectMLetter.userID;
+    cb(null, `cv${userIdMLetter}.pdf`);
   }
 });
 
@@ -826,12 +912,12 @@ app.post('/api/uploadMotivationLetterFiles', uploadMLetter.single('motivationLet
 
 
   // Construisez le chemin d'accès au fichier
-  const filePathMLetter = `C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Fichiers-JobSearch/${req.file.filename}`;
+  const filePathMLetter = `C:/Users/yvant/Desktop/Cours/Bachelorarbeit/Bachelorarbeit-JobSearch/src/assets/cv${userIdMLetter}`;
 
   con.query('USE JobSearch', (err, result) => {
     if (err) throw err;
 
-    let sqlUpdate = `UPDATE ${userTypeMLetter} SET motivationLetter = ? WHERE id = ?`;
+    let sqlUpdate = `UPDATE ${userTypeMLetter} SET cv = ? WHERE id = ?`;
     con.query(sqlUpdate, [filePathMLetter, userIdMLetter], (err, result) => {
       if (err) throw err;
       console.log("Motivation Letter updated in JobSeeker for user with ID ", userIdMLetter);

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ProfileService} from "../shared/profile.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-profil',
@@ -14,7 +15,10 @@ export class ProfilComponent {
   workPermitFile: File | null = null;
   motivationLetterFile: File | null = null;
 
-  constructor(private profilService: ProfileService) { }
+  constructor(private profilService: ProfileService,
+              private http: HttpClient) { }
+
+  private apiUrl = 'http://localhost:3000/api'; // Remplacez ceci par l'URL de votre API backend
 
   onTitleOfStaySelected(event: any): void {
     this.titleOfStayFile = event.target.files[0];

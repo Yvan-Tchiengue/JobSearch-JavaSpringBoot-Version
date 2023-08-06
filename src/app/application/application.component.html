@@ -15,6 +15,10 @@
               <mat-card-subtitle>{{ job.location }}</mat-card-subtitle>
             </div>
             <div>
+              <button mat-button color="primary" (click)="idCardDownload(job)">ID Card</button>
+              <button mat-button color="primary" (click)="workPermitDownload(job)">Work Permit</button>
+              <button mat-button color="primary" (click)="cvDownload(job)">CV</button>
+              <button mat-button color="primary" (click)="titleOfStayDownload(job)">Title of Stay </button>
               <button mat-button color="primary" (click)="acceptCandidatures(job)">Accept</button>
               <button mat-button color="warn" (click)="rejectCandidatures(job)">Reject</button>
             </div>
