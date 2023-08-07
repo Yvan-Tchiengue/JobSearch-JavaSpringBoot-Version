@@ -9,6 +9,6 @@
   <span class="error" style="color: red" *ngIf="passwordField.errors?.['required'] && passwordField.touched">Password is required</span>
   <span class="error" style="color: red" *ngIf="passwordField.errors?.['minlength'] && passwordField.touched">Password must be at least 8 characters</span>
 
-  <button type="submit" [disabled]="!loginForm.valid">log in</button>
+  <button type="submit" [disabled]="!loginForm.valid || isSubmitted">log in</button>
 </form>
 <a routerLink="/account-creation">Create an account</a>

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class ConnectionComponent {
 
   reponse?: number;
+  isSubmitted = false;
   constructor(private http: HttpClient,
               private authService: JobOfferService,
               private sessionService: SessionService,
@@ -31,7 +32,7 @@ export class ConnectionComponent {
     this.authService.authentification(this.credentials).subscribe(
       response => {
         //alert("la reponse du server est: " +JSON.stringify(response));
-        this.sessionService.setSession(response.token, response.userType, response.userID);
+        this.sessionService.setSession(response.token, response.userType, response.userID, response.userName);
         //alert('Authentification réussie!' +JSON.stringify(response));
         this.router.navigate(['/dashboard']);
       },
@@ -42,5 +43,6 @@ export class ConnectionComponent {
       }
 
     );
+    this.isSubmitted = true;
   }
 }

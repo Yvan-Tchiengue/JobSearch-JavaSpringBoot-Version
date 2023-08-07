@@ -14,6 +14,10 @@ export class ProfilComponent {
   identityCardFile: File | null = null;
   workPermitFile: File | null = null;
   motivationLetterFile: File | null = null;
+  isApplied: boolean = false;
+  isApplied1: boolean = false;
+  isApplied2: boolean = false;
+  isApplied3: boolean = false;
 
   constructor(private profilService: ProfileService,
               private http: HttpClient) { }
@@ -52,6 +56,7 @@ export class ProfilComponent {
   }
 
   onFilesTitleOfStayUpload(): void {
+    this.isApplied2 = true;
     if (this.titleOfStayFile) {
       this.profilService.uploadTitleOfStayFiles(this.titleOfStayFile).subscribe(
         () => {
@@ -67,6 +72,7 @@ export class ProfilComponent {
   }
 
   onFilesIdentityCardUpload(): void {
+    this.isApplied = true;
     if (this.identityCardFile) {
       this.profilService.uploadIdentityCardFiles(this.identityCardFile).subscribe(
         () => {
@@ -82,6 +88,7 @@ export class ProfilComponent {
   }
 
   onFilesWorkPermitUpload(): void {
+    this.isApplied3 = true;
     if (this.workPermitFile) {
       this.profilService.uploadWorkPermitFiles(this.workPermitFile).subscribe(
         () => {
@@ -97,6 +104,7 @@ export class ProfilComponent {
   }
 
   onFilesMotivationLetterUpload(): void {
+    this.isApplied1 = true;
     if (this.motivationLetterFile) {
       this.profilService.uploadMotivationLetterFiles(this.motivationLetterFile).subscribe(
         () => {

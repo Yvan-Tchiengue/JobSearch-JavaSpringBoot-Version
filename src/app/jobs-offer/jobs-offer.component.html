@@ -18,7 +18,7 @@
           <p>{{ job.description }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button="" (click)="sendCandidature(job)">apply now</button>
+          <button mat-raised-button="" [disabled]="job.isApplied" (click)="sendCandidature(job)">apply now</button>
         </mat-card-actions>
       </mat-card>
     </div>

@@ -120,6 +120,17 @@ con.connect(function(err) {
     });
 });*/
 
+//toutes les données de la table candidatures vont etre supprimées
+/*con.query('USE JobSearch', (err, result) => {
+    if (err) throw err;
+
+    con.query('DELETE FROM candidatures;', (err, result) => {
+        if (err) throw err;
+        console.log("All data from candidatures table deleted");
+    });
+});*/
+
+
 //je veux supprimer toutes les informations de la table candidatures avant de continuer
 /*con.query('USE JobSearch', (err, result) => {
     if (err) throw err;
@@ -947,7 +958,7 @@ app.post('/api/authentification', (req, res) => {
       const token = jwt.sign({ id: user.id, type: 'JobSeeker' }, 'tony', { expiresIn: '24h' });
 
       //return res.json({ token });
-      return res.json({ token, userType: user.type_of_account, userID: user.id });
+      return res.json({ token, userType: user.type_of_account, userID: user.id, userName: user.namee });
     }
 
     // If there is no JobSeeker with this email, check Employer table
@@ -972,7 +983,7 @@ app.post('/api/authentification', (req, res) => {
       const token = jwt.sign({ id: user.id, type: 'Employer' }, 'tony', { expiresIn: '24h' });
 
       //res.json({ token });
-      res.json({ token, userType: user.type_of_account, userID: user.id });
+      res.json({ token, userType: user.type_of_account, userID: user.id, userName: user.namee });
     });
   });
 });

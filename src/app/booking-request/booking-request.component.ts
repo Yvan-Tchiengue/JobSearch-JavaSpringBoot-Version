@@ -8,6 +8,8 @@ import { JobOfferService} from "../shared/job-offer.service";
 })
 export class BookingRequestComponent {
 
+  isSubmitted = false;
+
   constructor(private jobsOfferService: JobOfferService) { }
 
   ngOnInit(): void {
@@ -29,6 +31,7 @@ export class BookingRequestComponent {
       () => alert('Offre d\'emploi créée avec succès!'),
       err => alert('Erreur lors de la création de l\'offre d\'emploi: ' + err.message)
     );
+    this.isSubmitted = true;
   }
 
 }

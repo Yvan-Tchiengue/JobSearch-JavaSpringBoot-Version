@@ -12,6 +12,7 @@ import {Observable} from "rxjs";
 export class JobsOfferComponent {
 
   lieu!: string;
+  block: boolean = false;
 
   //offres: any[] = [];
   jobs: any[] = []; // Array pour stocker les offres d'emploi
@@ -28,7 +29,11 @@ export class JobsOfferComponent {
   rechercherJobs(): void {
 
     this.http.get<any[]>(`${this.apiUrl}/jobsOffer`).subscribe((data: any[]) => {
-      this.jobs = data;
+      //this.jobs = data;
+      this.jobs = data.map(job => ({
+        ...job,
+        isApplied: false
+      }));
       console.log(this.jobs);
     });
     // Appelez le service pour rechercher les offres d'emploi en fonction des filtres de recherche
@@ -37,7 +42,8 @@ export class JobsOfferComponent {
   }
 
 
-  sendCandidature(offre: any[]): void{
+  sendCandidature(offre: any): void{
+    offre.isApplied = true;
     console.log(offre);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête

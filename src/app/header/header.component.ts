@@ -13,12 +13,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 export class HeaderComponent {
 
   userType: string | null | undefined;
+  userName: string | null | undefined;
 
   constructor( private sessionService: SessionService,
                private router: Router) { }
 
   ngOnInit(): void {
     this.userType = this.sessionService.getUserType();
+    this.userName = this.sessionService.getUserName();
   }
 
   logout(){
