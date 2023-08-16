@@ -44,11 +44,11 @@ export class JobsOfferComponent {
 
   sendCandidature(offre: any): void{
     offre.isApplied = true;
-    console.log(offre);
+    console.log("la candidature est:",offre);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête
     });
-    //console.log(headers);
+    console.log("le header a envoyer est:",headers);
 
     this.http.post(`${this.apiUrl}/upload-candidature`, offre, {headers}).subscribe(
       response => {
@@ -58,4 +58,5 @@ export class JobsOfferComponent {
         console.error(error);
       });
   }
+
 }

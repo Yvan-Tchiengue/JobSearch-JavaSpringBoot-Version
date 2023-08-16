@@ -290,13 +290,14 @@ app.post('/api/reject-candidatures', (req, res) => {
   // Décodez le token JWT
   const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
   console.log(bearerHeader);
-  const bearerToken = bearerHeader.split(' ')[1];
+  const bearerToken = JSON.parse(bearerHeader.replace("Bearer", ""));
+  //const bearerToken = bearerHeader.split(' ')[1];
   console.log(bearerToken);
-  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  //const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
   // Sauvegarde les informations dans des variables
-  const userId = bearerObject.userID;
-  const userType = bearerObject.userType;
-  const jwtToken = bearerObject.token;
+  const userId = bearerToken.userID;
+  const userType = bearerToken.userType;
+  const jwtToken = bearerToken.token;
 
   const title = req.body.title ;
   const description = req.body.description;
@@ -334,13 +335,14 @@ app.post('/api/accept-candidatures', (req, res) => {
   // Décodez le token JWT
   const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
   console.log(bearerHeader);
-  const bearerToken = bearerHeader.split(' ')[1];
+  const bearerToken = JSON.parse(bearerHeader.replace("Bearer", ""));
+  //const bearerToken = bearerHeader.split(' ')[1];
   console.log(bearerToken);
-  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  //const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
   // Sauvegarde les informations dans des variables
-  const userId = bearerObject.userID;
-  const userType = bearerObject.userType;
-  const jwtToken = bearerObject.token;
+  const userId = bearerToken.userID;
+  const userType = bearerToken.userType;
+  const jwtToken = bearerToken.token;
 
   const title = req.body.title ;
   const description = req.body.description;
@@ -396,13 +398,14 @@ app.get('/api/see-confirmation', (req, res) => {
   // Décodez le token JWT
   const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
   console.log(bearerHeader);
-  const bearerToken = bearerHeader.split(' ')[1];
+  const bearerToken = JSON.parse(bearerHeader.replace("Bearer", ""));
+  //const bearerToken = bearerHeader.split(' ')[1];
   console.log(bearerToken);
-  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  //const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
   // Sauvegarde les informations dans des variables
-  const userId = bearerObject.userID;
-  const userType = bearerObject.userType;
-  const jwtToken = bearerObject.token;
+  const userId = bearerToken.userID;
+  const userType = bearerToken.userType;
+  const jwtToken = bearerToken.token;
 
   // Affiche les informations extraites
   console.log(`User ID: ${userId}`);
@@ -495,13 +498,14 @@ app.get('/api/myJobsCandidatures', (req, res) => {
   // Décodez le token JWT
   const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
   console.log(bearerHeader);
-  const bearerToken = bearerHeader.split(' ')[1];
+  const bearerToken = JSON.parse(bearerHeader.replace("Bearer", ""));
+  //const bearerToken = bearerHeader.split(' ')[1];
   console.log(bearerToken);
-  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  //const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
   // Sauvegarde les informations dans des variables
-  const userId = bearerObject.userID;
-  const userType = bearerObject.userType;
-  const jwtToken = bearerObject.token;
+  const userId = bearerToken.userID;
+  const userType = bearerToken.userType;
+  const jwtToken = bearerToken.token;
 
   // Affiche les informations extraites
   console.log(`User ID: ${userId}`);
@@ -559,13 +563,14 @@ app.get('/api/myJobsOffer', (req, res) => {
   // Décodez le token JWT
   const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
   console.log(bearerHeader);
-  const bearerToken = bearerHeader.split(' ')[1];
+  const bearerToken = JSON.parse(bearerHeader.replace("Bearer", ""));
+  //const bearerToken = bearerHeader.split(' ')[1];
   console.log(bearerToken);
-  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  //const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
   // Sauvegarde les informations dans des variables
-  const userId = bearerObject.userID;
-  const userType = bearerObject.userType;
-  const jwtToken = bearerObject.token;
+  const userId = bearerToken.userID;
+  const userType = bearerToken.userType;
+  const jwtToken = bearerToken.token;
 
   // Affiche les informations extraites
   console.log(`User ID: ${userId}`);
@@ -587,18 +592,28 @@ app.get('/api/myJobsOffer', (req, res) => {
 
 app.post('/api/upload-candidature', (req, res) => {
   console.log('Bewerbung envoyé');
-  console.log(JSON.stringify(req.body));
-  console.log(req.headers);
+  console.log("voici ce que je recois du front-end: ",JSON.stringify(req.body));
+  console.log("voici le header recu du front-end: ",req.headers);
 
   const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
-  console.log(bearerHeader);
-  const bearerToken = bearerHeader.split(' ')[1];
-  console.log(bearerToken);
-  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  console.log("bearerHeader est: ",bearerHeader);
+  //const bearerToken = bearerHeader.split(' ')[1];
+  const bearerToken = JSON.parse(bearerHeader.replace("Bearer", ""));
+  console.log("bearerToken est: ",bearerToken);
+  /*let bearerObject;
+
+  try {
+      bearerObject = JSON.parse(bearerToken);
+      console.log("le bearerObject est: ", bearerObject);
+  } catch (e) {
+      console.error('Error parsing token:', e);
+      return res.status(400).send('Invalid token format');
+  }*/
+  //const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
   // Sauvegarde les informations dans des variables
-  const userId = bearerObject.userID;
-  const userType = bearerObject.userType;
-  const jwtToken = bearerObject.token;
+  const userId = bearerToken.userID;
+  const userType = bearerToken.userType;
+  const jwtToken = bearerToken.token;
   const title = req.body.title ;
   const description = req.body.description;
   const location = req.body.location;
@@ -730,9 +745,10 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const bearerHeaderMLetter = req.headers['authorization'];
-    const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
-    const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
-    const userIdMLetter = bearerObjectMLetter.userID;
+    const bearerTokenMLetter = JSON.parse(bearerHeaderMLetter.replace("Bearer", ""));
+    //const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
+    //const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
+    const userIdMLetter = bearerTokenMLetter.userID;
     cb(null, `titleofstay${userIdMLetter}.pdf`);
   }
 });
@@ -748,13 +764,14 @@ app.post('/api/uploadTitleOfStayFiles', upload.single('titleOfStay'), async (req
   // Décodez le token JWT
   const bearerHeader = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
   console.log(bearerHeader);
-  const bearerToken = bearerHeader.split(' ')[1];
+  const bearerToken = JSON.parse(bearerHeader.replace("Bearer", ""));
+  //const bearerToken = bearerHeader.split(' ')[1];
   console.log(bearerToken);
-  const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
+  //const bearerObject = JSON.parse(bearerToken);  // Convertir la chaîne JSON en objet
   // Sauvegarde les informations dans des variables
-  const userId = bearerObject.userID;
-  const userType = bearerObject.userType;
-  const jwtToken = bearerObject.token;
+  const userId = bearerToken.userID;
+  const userType = bearerToken.userType;
+  const jwtToken = bearerToken.token;
 
   // Affiche les informations extraites
   console.log(`User ID: ${userId}`);
@@ -783,9 +800,10 @@ const storageICard = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const bearerHeaderMLetter = req.headers['authorization'];
-    const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
-    const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
-    const userIdMLetter = bearerObjectMLetter.userID;
+    const bearerTokenMLetter = JSON.parse(bearerHeaderMLetter.replace("Bearer", ""));
+    //const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
+    //const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
+    const userIdMLetter = bearerTokenMLetter.userID;
     cb(null, `identitycard${userIdMLetter}.pdf`);
   }
 });
@@ -797,17 +815,19 @@ app.post('/api/uploadIdentityCardFiles', uploadICard.single('identityCard'), asy
   if (!req.file) {
     return res.status(400).send('No file uploaded');
   }
+  console.log("le fichier recu est: ",JSON.stringify(req.file));
 
   // Décodez le token JWT
   const bearerHeaderICard = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
-  console.log(bearerHeaderICard);
-  const bearerTokenICard = bearerHeaderICard.split(' ')[1];
-  console.log(bearerTokenICard);
-  const bearerObjectICard = JSON.parse(bearerTokenICard);  // Convertir la chaîne JSON en objet
+  console.log("le bearerHeaderICard est : ",bearerHeaderICard);
+  const bearerTokenICard = JSON.parse(bearerHeaderICard.replace("Bearer", ""));
+  //const bearerTokenICard = bearerHeaderICard.split(' ')[1];
+  console.log("le bearerTokenICard est: ",bearerTokenICard);
+  //const bearerObjectICard = JSON.parse(bearerTokenICard);  // Convertir la chaîne JSON en objet
   // Sauvegarde les informations dans des variables
-  const userIdICard = bearerObjectICard.userID;
-  const userTypeICard = bearerObjectICard.userType;
-  const jwtTokenICard = bearerObjectICard.token;
+  const userIdICard = bearerTokenICard.userID;
+  const userTypeICard = bearerTokenICard.userType;
+  const jwtTokenICard = bearerTokenICard.token;
 
   // Affiche les informations extraites
   console.log(`User ID: ${userIdICard}`);
@@ -834,9 +854,10 @@ const storageWPermit = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const bearerHeaderMLetter = req.headers['authorization'];
-    const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
-    const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
-    const userIdMLetter = bearerObjectMLetter.userID;
+    const bearerTokenMLetter = JSON.parse(bearerHeaderMLetter.replace("Bearer", ""));
+    //const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
+    //const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
+    const userIdMLetter = bearerTokenMLetter.userID;
     cb(null, `workpermit${userIdMLetter}.pdf`);
   }
 });
@@ -852,13 +873,14 @@ app.post('/api/uploadWorkPermitFiles', uploadWPermit.single('workPermit'), async
   // Décodez le token JWT
   const bearerHeaderWPermit = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
   console.log(bearerHeaderWPermit);
-  const bearerTokenWPermit = bearerHeaderWPermit.split(' ')[1];
+  const bearerTokenWPermit = JSON.parse(bearerHeaderWPermit.replace("Bearer", ""));
+  //const bearerTokenWPermit = bearerHeaderWPermit.split(' ')[1];
   console.log(bearerTokenWPermit);
-  const bearerObjectWPermit = JSON.parse(bearerTokenWPermit);  // Convertir la chaîne JSON en objet
+  //const bearerObjectWPermit = JSON.parse(bearerTokenWPermit);  // Convertir la chaîne JSON en objet
   // Sauvegarde les informations dans des variables
-  const userIdWPermit = bearerObjectWPermit.userID;
-  const userTypeWPermit = bearerObjectWPermit.userType;
-  const jwtTokenWPermit = bearerObjectWPermit.token;
+  const userIdWPermit = bearerTokenWPermit.userID;
+  const userTypeWPermit = bearerTokenWPermit.userType;
+  const jwtTokenWPermit = bearerTokenWPermit.token;
 
   // Affiche les informations extraites
   console.log(`User ID: ${userIdWPermit}`);
@@ -890,9 +912,10 @@ const storageMLetter = multer.diskStorage({
   }*/
   filename: (req, file, cb) => {
     const bearerHeaderMLetter = req.headers['authorization'];
-    const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
-    const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
-    const userIdMLetter = bearerObjectMLetter.userID;
+    const bearerTokenMLetter = JSON.parse(bearerHeaderMLetter.replace("Bearer", ""));
+    //const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
+    //const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);
+    const userIdMLetter = bearerTokenMLetter.userID;
     cb(null, `cv${userIdMLetter}.pdf`);
   }
 });
@@ -908,13 +931,14 @@ app.post('/api/uploadMotivationLetterFiles', uploadMLetter.single('motivationLet
   // Décodez le token JWT
   const bearerHeaderMLetter = req.headers['authorization'];// Ici vous obtenez le JSON et non le token JWT
   console.log(bearerHeaderMLetter);
-  const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
+  const bearerTokenMLetter = JSON.parse(bearerHeaderMLetter.replace("Bearer", ""));
+  //const bearerTokenMLetter = bearerHeaderMLetter.split(' ')[1];
   console.log(bearerTokenMLetter);
-  const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);  // Convertir la chaîne JSON en objet
+  //const bearerObjectMLetter = JSON.parse(bearerTokenMLetter);  // Convertir la chaîne JSON en objet
   // Sauvegarde les informations dans des variables
-  const userIdMLetter = bearerObjectMLetter.userID;
-  const userTypeMLetter = bearerObjectMLetter.userType;
-  const jwtTokenMLetter = bearerObjectMLetter.token;
+  const userIdMLetter = bearerTokenMLetter.userID;
+  const userTypeMLetter = bearerTokenMLetter.userType;
+  const jwtTokenMLetter = bearerTokenMLetter.token;
 
   // Affiche les informations extraites
   console.log(`User ID: ${userIdMLetter}`);
