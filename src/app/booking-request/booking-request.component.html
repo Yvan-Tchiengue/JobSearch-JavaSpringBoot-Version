@@ -1,16 +1,16 @@
 <app-header></app-header>
 <h2>Request for Manpower</h2>
-<form (ngSubmit)="submit()" #loginForm="ngForm">
+<form [formGroup]="registerForm" (ngSubmit)="submit()">
   <span>Title</span>
-  <input [(ngModel)]="jobsOffer.title" name="titre" placeholder="Title" required #titleField="ngModel">
-  <span class="error" style="color: red" *ngIf="titleField.errors?.['required'] && titleField.touched">Title is required</span>
+  <input formControlName="title" name="titre" placeholder="Title">
+  <span class="error" style="color: red" *ngIf="registerForm?.get('title')?.errors?.['required'] && registerForm?.get('title')?.touched">Title is required</span>
   <span>Description</span>
-  <input [(ngModel)]="jobsOffer.description" name="description" placeholder="Description" required #descriptionField="ngModel">
-  <span class="error" style="color: red" *ngIf="descriptionField.errors?.['required'] && descriptionField.touched">Description is required</span>
+  <input formControlName="description" name="description" placeholder="Description">
+  <span class="error" style="color: red" *ngIf="registerForm?.get('description')?.errors?.['required'] && registerForm?.get('description')?.touched">Description is required</span>
   <span>Location</span>
-  <input [(ngModel)]="jobsOffer.location" name="lieu" placeholder="Location" required #locationField="ngModel">
-  <span class="error" style="color: red" *ngIf="locationField.errors?.['required'] && locationField.touched">Location is required</span>
-  <button type="submit" [disabled]="!loginForm.valid || isSubmitted">Publish the Job Offer</button>
+  <input formControlName="location" name="lieu" placeholder="Location">
+  <span class="error" style="color: red" *ngIf="registerForm?.get('location')?.errors?.['required'] && registerForm?.get('location')?.touched">Location is required</span>
+  <button type="submit" [disabled]="!registerForm.valid || isSubmitted">Publish the Job Offer</button>
 </form>
 <footer class="footer">
   <p>Yvan Richnel Tchiengue. Copyright &copy; 2023</p>

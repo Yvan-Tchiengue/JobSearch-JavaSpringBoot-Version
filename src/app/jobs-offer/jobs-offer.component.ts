@@ -11,7 +11,7 @@ import {Observable} from "rxjs";
 })
 export class JobsOfferComponent {
 
-  lieu!: string;
+  //lieu!: string;
   block: boolean = false;
 
   //offres: any[] = [];

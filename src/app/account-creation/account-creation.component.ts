@@ -19,19 +19,19 @@ export class AccountCreationComponent {
     this.registerForm = this.formBuilder.group({
       namee: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['',  [Validators.required, Validators.minLength(8)]],
       type_of_account: ['', Validators.required]
     });
   }
 
-  jobSeeker = {
+  /*jobSeeker = {
     namee: '',
     email: '',
     password: '',
     type_of_account: ''
-  };
+  };*/
 
-  submit() {
+  /*submit() {
     //alert("les données a soumettre au serveur sont:" + JSON.stringify(this.jobSeeker));
     this.jobSeekerService.creerCompte(this.jobSeeker).subscribe(
       response => {
@@ -43,6 +43,17 @@ export class AccountCreationComponent {
         //alert('Account creation error: ' + error.message);
         alert('Account creation error');
       });
+  }*/
+  submit() {
+    const formData = this.registerForm.value;
+    this.jobSeekerService.creerCompte(formData).subscribe(
+      response => {
+        alert('Account created successfully!');
+      },
+      error => {
+        alert('Account creation error');
+      }
+    );
   }
 
 }

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { JobOfferService} from "../shared/job-offer.service";
 import {SessionService} from "../shared/session.service";
 import { Router } from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -12,24 +13,31 @@ import { Router } from '@angular/router';
 })
 export class ConnectionComponent {
 
+  registerForm!: FormGroup;
   reponse?: number;
   isSubmitted = false;
   constructor(private http: HttpClient,
               private authService: JobOfferService,
               private sessionService: SessionService,
-              private router: Router) { }
+              private router: Router,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['',  [Validators.required, Validators.minLength(8)]]
+    });
   }
 
-  credentials = {
+  /*credentials = {
     email: '',
     password: ''
-  };
+  };*/
 
   submit() {
-    //alert("les credentials a envoyer au serveur sont: " +JSON.stringify(this.credentials));
-    this.authService.authentification(this.credentials).subscribe(
+    const formData = this.registerForm.value;
+    //alert("les credentials a envoyer au serveur sont: " +JSON.stringify(formData));
+    this.authService.authentification(formData).subscribe(
       response => {
         //alert("la reponse du server est: " +JSON.stringify(response));
         this.sessionService.setSession(response.token, response.userType, response.userID, response.userName);
@@ -39,7 +47,7 @@ export class ConnectionComponent {
         err => {
         const errorMessage = 'Erreur lors de l\'authentification: ' + err.error.error + JSON.stringify(err);
         const errorMessage1 ="Authentication error: wrong email address or password!"
-        alert(errorMessage1);
+        alert(errorMessage);
       }
 
     );
