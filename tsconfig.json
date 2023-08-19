@@ -10,7 +10,6 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
@@ -19,6 +18,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
+    "types": ["cypress"],
     "lib": [
       "ES2022",
       "dom"

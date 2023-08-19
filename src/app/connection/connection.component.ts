@@ -29,11 +29,6 @@ export class ConnectionComponent {
     });
   }
 
-  /*credentials = {
-    email: '',
-    password: ''
-  };*/
-
   submit() {
     const formData = this.registerForm.value;
     //alert("les credentials a envoyer au serveur sont: " +JSON.stringify(formData));

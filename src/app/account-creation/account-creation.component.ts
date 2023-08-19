@@ -24,26 +24,6 @@ export class AccountCreationComponent {
     });
   }
 
-  /*jobSeeker = {
-    namee: '',
-    email: '',
-    password: '',
-    type_of_account: ''
-  };*/
-
-  /*submit() {
-    //alert("les données a soumettre au serveur sont:" + JSON.stringify(this.jobSeeker));
-    this.jobSeekerService.creerCompte(this.jobSeeker).subscribe(
-      response => {
-        //alert("la reponse du server est: " + response + JSON.stringify(response));
-        alert('Account created successfully!');
-      },
-      error => {
-        //alert("malheureusement le server me renvoit l'errur suivante: "+ error + JSON.stringify(error) + JSON.stringify(this.jobSeeker));
-        //alert('Account creation error: ' + error.message);
-        alert('Account creation error');
-      });
-  }*/
   submit() {
     const formData = this.registerForm.value;
     this.jobSeekerService.creerCompte(formData).subscribe(
