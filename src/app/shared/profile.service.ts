@@ -73,7 +73,7 @@ export class ProfileService {
 
   uploadMotivationLetterFiles(motivationLetterFile:File): Observable<any> {
     const formData = new FormData();
-    formData.append('motivationLetter', motivationLetterFile, motivationLetterFile.name);
+    formData.append('cv', motivationLetterFile, motivationLetterFile.name);
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête

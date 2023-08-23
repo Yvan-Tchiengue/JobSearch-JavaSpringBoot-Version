@@ -1,6 +1,12 @@
 const con = require('../models/database');
 const bcrypt = require('bcrypt');
 
+/**
+ * creation d'un compte utilisateur dans l'application
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 exports.createAccount = async (req, res) => {
     console.log("voici les données récuperées du front-end: ", JSON.stringify(req.body), req.body);
     const user = req.body;
