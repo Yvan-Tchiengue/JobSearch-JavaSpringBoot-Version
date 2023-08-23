@@ -22,12 +22,6 @@ export class BookingRequestComponent {
     });
   }
 
-  /*jobsOffer = {
-    title: '',
-    description: '',
-    location: ''
-  };*/
-
   submit() {
     const formData = this.registerForm.value;
     this.jobsOfferService.creerOffre(formData).subscribe(
