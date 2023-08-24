@@ -38,15 +38,11 @@ describe('BookingRequestComponent', () => {
       description: 'Test Description',
       location: 'Test Location'
     };
-
     component.registerForm.setValue(mockOffer);
-    mockJobOfferService.creerOffre.and.returnValue(of({}));
-
+    mockJobOfferService.createOffer.and.returnValue(of({}));
     spyOn(window, 'alert');
-
     component.submit();
-
-    expect(mockJobOfferService.creerOffre).toHaveBeenCalledWith(mockOffer);
+    expect(mockJobOfferService.createOffer).toHaveBeenCalledWith(mockOffer);
     expect(window.alert).toHaveBeenCalledWith('Offre d\'emploi créée avec succès!');
     expect(component.isSubmitted).toBeTrue();
   });
@@ -57,18 +53,14 @@ describe('BookingRequestComponent', () => {
       description: 'Test Description',
       location: 'Test Location'
     };
-
     component.registerForm.setValue(mockOffer);
     const errorResponse = new ErrorEvent('error', {
       message: 'Failed to submit'
     });
-    mockJobOfferService.creerOffre.and.returnValue(throwError(errorResponse));
-
+    mockJobOfferService.createOffer.and.returnValue(throwError(errorResponse));
     spyOn(window, 'alert');
-
     component.submit();
-
-    expect(mockJobOfferService.creerOffre).toHaveBeenCalledWith(mockOffer);
+    expect(mockJobOfferService.createOffer).toHaveBeenCalledWith(mockOffer);
     expect(window.alert).toHaveBeenCalledWith('Erreur lors de la création de l\'offre d\'emploi: Failed to submit');
   });
 });

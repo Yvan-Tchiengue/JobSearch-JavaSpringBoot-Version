@@ -4,15 +4,12 @@ const port = 3000;
 const cors = require('cors');
 app.use(cors());
 const multer = require('multer');
-// Importez le module database.js pour établir la connexion à la base de données
-require('./models/database');
-
+require('./models/database'); //Import database.js module to establish database connection.
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 /**
- *
- *
+ *loading files from the controllers directory
  */
 const account_creation = require('./controllers/account-creation');
 const jobs_offer = require('./controllers/jobs-offer');
@@ -24,7 +21,6 @@ const my_jobs_candidatures = require('./controllers/statusCandidatures');
 const my_jobsoffer = require('./controllers/jobs-offer');
 const upload_Candidatures = require('./controllers/statusCandidatures');
 const booking_request = require('./controllers/booking-request');
-const upload_title_of_stay = require('./controllers/upload-documents');
 const account_connection = require('./controllers/account-connection');
 
 
@@ -43,12 +39,11 @@ app.get('/api/myJobsCandidatures', my_jobs_candidatures.myJobsCandidatures);
 app.get('/api/myJobsOffer', my_jobsoffer.displayMyJobsoffer);
 app.post('/api/upload-candidature', upload_Candidatures.uploadcandidatures);
 app.post('/api/booking-request', booking_request.bookingRequests);
-//app.post('/api/uploadTitleOfStayFiles', upload.single('titleOfStay'), upload_title_of_stay.uploadTitleOfStay);
 app.post('/api/authentification', account_connection.accountConnection);
 
 
 /**
- *  créer la configuration de téléchargement de fichier
+ *  file upload configuration using Multer
  */
 const createFileUploadConfig = (filenamePrefix) => {
   return multer.diskStorage({
@@ -64,9 +59,8 @@ const createFileUploadConfig = (filenamePrefix) => {
   });
 };
 
-
 /**
- *  gérer le téléchargement de fichier
+ *  manage file uploads using Multer
  */
 const uploadFile = (filenamePrefix) => {
   return multer({ storage: createFileUploadConfig(filenamePrefix) });

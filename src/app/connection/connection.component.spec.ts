@@ -48,9 +48,7 @@ describe('ConnectionComponent', () => {
 
   it('should call authentification method and navigate to dashboard upon successful authentication', () => {
     mockAuthService.authentification.and.returnValue(of({ token: 'dummyToken', userType: 'user', userID: '123', userName: 'John' }));
-
     component.submit();
-
     expect(mockAuthService.authentification).toHaveBeenCalled();
     expect(mockSessionService.setSession).toHaveBeenCalledWith('dummyToken', 'user', '123', 'John');
   });
@@ -58,9 +56,7 @@ describe('ConnectionComponent', () => {
   it('should display an error message upon failed authentication', () => {
     mockAuthService.authentification.and.returnValue(throwError({ error: { error: 'Auth Error' } }));
     spyOn(window, 'alert');
-
     component.submit();
-
     expect(window.alert).toHaveBeenCalledWith('Authentication error: wrong email address or password!');
   });
 });

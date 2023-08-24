@@ -4,7 +4,6 @@
     <h1 style="text-align: center">this is the list of job offers submitted by the employer</h1>
   </div>
   <button mat-raised-button (click)="getJobs()">See jobs submitted</button>
-
   <ng-container *ngIf="jobs.length > 0">
     <div *ngFor="let job of jobs">
       <mat-card>

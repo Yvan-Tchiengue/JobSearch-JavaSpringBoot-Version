@@ -4,16 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SessionService {
-
   constructor() { }
 
   setSession(token: string, userType: string, userID: string, userName: string): void {
-    console.log("le localstorage est: " +JSON.stringify(localStorage));
     localStorage.setItem('token', token);
     localStorage.setItem('userType', userType);
     localStorage.setItem('userID', userID);
-    localStorage.setItem('userName', userName)
-    console.log("le localstorage apres avoir set token et usertype provenant du backend est: " +JSON.stringify(localStorage));
+    localStorage.setItem('userName', userName);
   }
 
   getToken(): string | null {

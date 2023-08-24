@@ -11,7 +11,7 @@ describe('AccountCreationComponent', () => {
   let mockJobOfferService: jasmine.SpyObj<JobOfferService>;
 
   beforeEach(() => {
-    mockJobOfferService = jasmine.createSpyObj(['creerCompte']);
+    mockJobOfferService = jasmine.createSpyObj(['createAccount']);
 
     TestBed.configureTestingModule({
       declarations: [AccountCreationComponent],
@@ -45,11 +45,11 @@ describe('AccountCreationComponent', () => {
       type_of_account: 'jobseeker'
     });
 
-    mockJobOfferService.creerCompte.and.returnValue(of({ success: true }));
+    mockJobOfferService.createAccount.and.returnValue(of({ success: true }));
 
     component.submit();
 
-    expect(mockJobOfferService.creerCompte).toHaveBeenCalledWith({
+    expect(mockJobOfferService.createAccount).toHaveBeenCalledWith({
       namee: 'tony',
       email: 'tony@example.com',
       password: 'password1234',
@@ -59,7 +59,7 @@ describe('AccountCreationComponent', () => {
 
   it('should handle service success response', () => {
     spyOn(window, 'alert');
-    mockJobOfferService.creerCompte.and.returnValue(of({ success: true }));
+    mockJobOfferService.createAccount.and.returnValue(of({ success: true }));
 
     component.submit();
 
@@ -68,7 +68,7 @@ describe('AccountCreationComponent', () => {
 
   it('should handle service error response', () => {
     spyOn(window, 'alert');
-    mockJobOfferService.creerCompte.and.returnValue(throwError(new Error('Some error')));
+    mockJobOfferService.createAccount.and.returnValue(throwError(new Error('Some error')));
 
     component.submit();
 

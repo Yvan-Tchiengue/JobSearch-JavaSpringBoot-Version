@@ -10,8 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AccountCreationComponent {
 
-  registerForm!: FormGroup;  // Declare registerForm here
-
+  registerForm!: FormGroup;
   constructor(private jobSeekerService: JobOfferService,
               private formBuilder: FormBuilder) { }
 
@@ -26,7 +25,7 @@ export class AccountCreationComponent {
 
   submit() {
     const formData = this.registerForm.value;
-    this.jobSeekerService.creerCompte(formData).subscribe(
+    this.jobSeekerService.createAccount(formData).subscribe(
       response => {
         alert('Account created successfully!');
       },

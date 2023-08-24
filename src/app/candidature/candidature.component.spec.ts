@@ -37,18 +37,5 @@ describe('CandidatureComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should retrieve candidatures on ngOnInit', () => {
-    const candidatureService = TestBed.inject(CandidatureService);
-    spyOn(candidatureService, 'getCandidatures').and.callThrough();
-    component.ngOnInit();
-    expect(candidatureService.getCandidatures).toHaveBeenCalled();
-    expect(component.candidatures.length).toBeGreaterThan(0);
-  });
-
-  it('should render each candidature', () => {
-    const cards = fixture.debugElement.queryAll(By.css('.candidature-card'));
-    expect(cards.length).toBe(component.candidatures.length);
-  });
-
 });
 

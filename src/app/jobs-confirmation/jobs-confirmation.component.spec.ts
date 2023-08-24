@@ -13,10 +13,6 @@ describe('JobsConfirmationComponent', () => {
   let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
-    mockJobOfferService = {
-      getOffresFavorables: jasmine.createSpy('getOffresFavorables').and.returnValue([{ title: 'test' }])
-    };
-
     mockAuthService = {
       getLocalStorage: jasmine.createSpy('getLocalStorage').and.returnValue('test-token')
     };
@@ -60,6 +56,6 @@ describe('JobsConfirmationComponent', () => {
   });
 
   afterEach(() => {
-    httpTestingController.verify(); // Ensure no outstanding requests
+    httpTestingController.verify();
   });
 });

@@ -12,7 +12,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./connection.component.css']
 })
 export class ConnectionComponent {
-
   registerForm!: FormGroup;
   reponse?: number;
   isSubmitted = false;
@@ -31,20 +30,15 @@ export class ConnectionComponent {
 
   submit() {
     const formData = this.registerForm.value;
-    //alert("les credentials a envoyer au serveur sont: " +JSON.stringify(formData));
     this.authService.authentification(formData).subscribe(
       response => {
-        //alert("la reponse du server est: " +JSON.stringify(response));
         this.sessionService.setSession(response.token, response.userType, response.userID, response.userName);
-        //alert('Authentification réussie!' +JSON.stringify(response));
         this.router.navigate(['/dashboard']);
       },
         err => {
-        const errorMessage = 'Erreur lors de l\'authentification: ' + err.error.error + JSON.stringify(err);
-        const errorMessage1 ="Authentication error: wrong email address or password!"
+        const errorMessage = 'Authentication error:: ' + err.error.error + JSON.stringify(err);
         alert(errorMessage);
       }
-
     );
     this.isSubmitted = true;
   }

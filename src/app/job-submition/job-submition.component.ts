@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-//import { Job } from '../Job';
 
 @Component({
   selector: 'app-job-submition',
@@ -7,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./job-submition.component.css']
 })
 export class JobSubmitionComponent {
-
 }

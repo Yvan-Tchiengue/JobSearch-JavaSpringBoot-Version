@@ -17,8 +17,6 @@ describe('EmployeJobsOfferComponent', () => {
       getUserName: jasmine.createSpy('getUserName').and.returnValue('mock-username') // Mocking the getUserName method
     };
 
-
-
     TestBed.configureTestingModule({
       declarations: [EmployeJobsOfferComponent, HeaderComponent],
       imports: [HttpClientTestingModule], // Use this module to mock HTTP requests
@@ -47,15 +45,11 @@ describe('EmployeJobsOfferComponent', () => {
       { title: 'Job 1', location: 'Location 1', description: 'Description 1' },
       { title: 'Job 2', location: 'Location 2', description: 'Description 2' }
     ];
-
     component.getJobs();
-
     const request = httpTestingController.expectOne('http://localhost:3000/api/myJobsOffer');
     expect(request.request.method).toEqual('GET');
     expect(request.request.headers.get('Authorization')).toBe('Bearer mock-token');
-
     request.flush(mockJobs);
-
     expect(component.jobs).toEqual(mockJobs);
   });
 

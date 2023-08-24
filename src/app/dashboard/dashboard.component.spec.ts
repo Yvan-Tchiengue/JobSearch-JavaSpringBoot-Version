@@ -11,7 +11,7 @@ class MockSessionService {
   }
 
   getUserName(): string {
-    return 'MockUserName'; // Return a mock username or whatever is expected.
+    return 'MockUserName';
   }
 }
 
@@ -44,7 +44,6 @@ describe('DashboardComponent', () => {
     spyOn(sessionService, 'getUserType').and.returnValue('jobseeker');
     component.ngOnInit();
     fixture.detectChanges();
-
     const messageElement = fixture.debugElement.query(By.css('.welcome-message p')).nativeElement;
     expect(messageElement.textContent).toContain('You can search for jobs, submit your application and discover a wide range of professional opportunities.');
   });
@@ -53,7 +52,6 @@ describe('DashboardComponent', () => {
     spyOn(sessionService, 'getUserType').and.returnValue('employe');
     component.ngOnInit();
     fixture.detectChanges();
-
     const messageElement = fixture.debugElement.query(By.css('.welcome-message p')).nativeElement;
     expect(messageElement.textContent).toContain('You can submit your Booking Request and discover a wide range of professional Jobseeker.');
   });
@@ -62,7 +60,6 @@ describe('DashboardComponent', () => {
     spyOn(sessionService, 'getUserType').and.returnValue(null);
     component.ngOnInit();
     fixture.detectChanges();
-
     const messageElement = fixture.debugElement.query(By.css('.welcome-message p'));
     expect(messageElement).toBeNull();
   });

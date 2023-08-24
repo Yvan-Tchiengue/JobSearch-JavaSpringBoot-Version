@@ -8,28 +8,23 @@
   min-height: 100vh;
   margin: 0;
 }
-
 mat-form-field {
   width: 200px;
   margin-right: 10px;
 }
-
 .no-job{
   margin-left: 20px;
 }
-
 button{
   margin-left: 20px;
   margin-bottom: 20px;
   font-weight: bold;
   text-transform: lowercase;
 }
-
 button:hover {
   background-color: #ff1493;
   color: white;
 }
-
 mat-card {
   margin-bottom: 20px;
   border-radius: 8px;
@@ -38,25 +33,20 @@ mat-card {
   left: 20px;
   max-width: 1235px;
 }
-
 mat-card-title {
   color: #ff1493;
   font-weight: bold;
   text-transform: uppercase;
 }
-
 mat-card-subtitle{
   color: white;
 }
-
 mat-card-content{
   color: white;
 }
-
 mat-card-actions button {
   margin-right: 10px;
 }
-
 .content{
   padding: 80px;
   background: white;

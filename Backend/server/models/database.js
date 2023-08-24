@@ -9,11 +9,11 @@ const con = mysql.createConnection({
 
 con.connect((err) => {
     if (err) throw err;
-    console.log("Connection to database server established: tony Connected!");
+    console.log("Connection to database server established: Connected!");
 });
 
 /**
- * creation de la base de données JobSearch
+ * JobSearch database creation
  */
 const createDatabase = () => {
   con.query('CREATE DATABASE IF NOT EXISTS JobSearch;', (err, result) => {
@@ -70,7 +70,7 @@ const createDatabase = () => {
 };
 
 /**
- * ajoute un type de compte
+ * adds an account type
  */
 const addTypeOfAccount = () =>{
   con.query('USE JobSearch', (err, result) => {
@@ -78,18 +78,16 @@ const addTypeOfAccount = () =>{
 
     con.query('ALTER TABLE Employer ADD COLUMN type_of_account VARCHAR(255);', (err, result) => {
       if (err) throw err;
-      console.log("Column type_of_account added to Employer table");
     });
 
     con.query('ALTER TABLE JobSeeker ADD COLUMN type_of_account VARCHAR(255);', (err, result) => {
       if (err) throw err;
-      console.log("Column type_of_account added to JobSeeker table");
     });
   });
 }
 
 /**
- *  ajoute un mot de passe
+ *  adds new password
  */
 const addPassword = () =>{
   con.query('USE JobSearch', (err, result) => {
@@ -97,13 +95,12 @@ const addPassword = () =>{
 
     con.query('ALTER TABLE Employer ADD COLUMN password VARCHAR(255);', (err, result) => {
       if (err) throw err;
-      console.log("Column password added to Employer");
     });
   });
 }
 
 /**
- * ajoute une candidature dans la base de données
+ * adds an application to the database
  */
 const addCandidatures = () =>{
   con.changeUser({database : 'JobSearch'}, function(err) {
@@ -125,12 +122,12 @@ const addCandidatures = () =>{
 }
 
 /**
- *  fonction a appeler pour execution dans la base de données
+ *  function to call for execution in the database
  */
-//addCandidatures(); //add new table candidatures
-//addPassword(); //add column password in table employer
-//addTypeOfAccount(); //ajoute une nouvelle colonne dans les tables jobseeker et employer
-//createDatabase(); // Appelez la fonction pour créer les tables au démarrage
+//addCandidatures();
+//addPassword();
+//addTypeOfAccount();
+//createDatabase();
 
 
 module.exports = con;

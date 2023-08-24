@@ -4,9 +4,8 @@
     <mat-form-field>
       <input matInput placeholder="place">
     </mat-form-field>
-    <button mat-raised-button (click)="rechercherJobs()">search</button>
+    <button mat-raised-button (click)="findJobs()">search</button>
   </div>
-
   <ng-container *ngIf="jobs.length > 0">
     <div *ngFor="let job of jobs">
       <mat-card>
@@ -23,11 +22,9 @@
       </mat-card>
     </div>
   </ng-container>
-
   <div class="no-job" *ngIf="jobs.length === 0">
     <p>No jobs found.</p>
   </div>
-
 </div>
 <footer class="footer">
   <p>Yvan Richnel Tchiengue. Copyright &copy; 2023</p>

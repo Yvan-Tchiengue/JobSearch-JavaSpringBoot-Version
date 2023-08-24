@@ -3,7 +3,6 @@
   <div class="search">
     <button mat-raised-button (click)="seeConfirmation()">search</button>
   </div>
-
   <ng-container *ngIf="jobs.length > 0">
     <div *ngFor="let job of jobs">
       <mat-card>
@@ -27,7 +26,6 @@
       </mat-card>
     </div>
   </ng-container>
-
   <div class="no-job" *ngIf="jobs.length === 0">
     <p>No jobs found.</p>
   </div>

@@ -6,13 +6,11 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
 }
-
 .welcome-message {
   padding: 80px;
   background: white;
@@ -20,10 +18,8 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   flex-grow: 1;
-
-  flex: 1 0 auto; /* Cette ligne fait que le contenu s'étendra pour prendre tout l'espace disponible, laissant le footer en bas */
+  flex: 1 0 auto;
 }
-
 .welcome-message h1 {
   position: center;
   color: #001F3F;
@@ -31,18 +27,15 @@
   font-weight: bold;
   text-transform: uppercase;
 }
-
 p::first-letter {
   text-transform: uppercase;
 }
-
 .welcome-message p {
   color: #ff1493;
   line-height: 1.6;
   font-weight: bold;
   text-transform: lowercase;
 }
-
 .footer {
   background: #001F3F;
   color: white;
@@ -51,6 +44,6 @@ p::first-letter {
   width: 100%;
   font-weight: bold;
   text-transform: uppercase;
-  flex-shrink: 0; /* Cette ligne empêche le footer de rétrécir si le contenu est grand */
+  flex-shrink: 0;
 }
 

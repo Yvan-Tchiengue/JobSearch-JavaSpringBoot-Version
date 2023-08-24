@@ -8,8 +8,6 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent {
-
-
   titleOfStayFile: File | null = null;
   identityCardFile: File | null = null;
   workPermitFile: File | null = null;
@@ -22,7 +20,7 @@ export class ProfilComponent {
   constructor(private profilService: ProfileService,
               private http: HttpClient) { }
 
-  private apiUrl = 'http://localhost:3000/api'; // Remplacez ceci par l'URL de votre API backend
+  private apiUrl = 'http://localhost:3000/api';
 
   onTitleOfStaySelected(event: any): void {
     this.titleOfStayFile = event.target.files[0];
@@ -44,12 +42,9 @@ export class ProfilComponent {
     if (this.titleOfStayFile && this.identityCardFile && this.workPermitFile && this.motivationLetterFile) {
       this.profilService.uploadFiles(this.titleOfStayFile, this.identityCardFile, this.workPermitFile, this.motivationLetterFile).subscribe(
         () => {
-          // Fichiers téléversés avec succès
-          console.log('Fichiers téléversés avec succès');
         },
         (error) => {
-          // Gérer les erreurs de téléversement ici
-          console.error('Erreur lors du téléversement des fichiers :', error);
+          console.error('File upload error :', error);
         }
       );
     }
@@ -60,12 +55,9 @@ export class ProfilComponent {
     if (this.titleOfStayFile) {
       this.profilService.uploadTitleOfStayFiles(this.titleOfStayFile).subscribe(
         () => {
-          // Fichiers téléversés avec succès
-          console.log('Fichiers téléversés avec succès');
         },
         (error) => {
-          // Gérer les erreurs de téléversement ici
-          console.error('Erreur lors du téléversement des fichiers :', error);
+          console.error('File upload error:', error);
         }
       );
     }
@@ -76,12 +68,9 @@ export class ProfilComponent {
     if (this.identityCardFile) {
       this.profilService.uploadIdentityCardFiles(this.identityCardFile).subscribe(
         () => {
-          // Fichiers téléversés avec succès
-          console.log('Fichiers téléversés avec succès');
         },
         (error) => {
-          // Gérer les erreurs de téléversement ici
-          console.error('Erreur lors du téléversement des fichiers :', error);
+          console.error('File upload error :', error);
         }
       );
     }
@@ -92,12 +81,9 @@ export class ProfilComponent {
     if (this.workPermitFile) {
       this.profilService.uploadWorkPermitFiles(this.workPermitFile).subscribe(
         () => {
-          // Fichiers téléversés avec succès
-          console.log('Fichiers téléversés avec succès');
         },
         (error) => {
-          // Gérer les erreurs de téléversement ici
-          console.error('Erreur lors du téléversement des fichiers :', error);
+          console.error('File upload error :', error);
         }
       );
     }
@@ -108,12 +94,9 @@ export class ProfilComponent {
     if (this.motivationLetterFile) {
       this.profilService.uploadMotivationLetterFiles(this.motivationLetterFile).subscribe(
         () => {
-          // Fichiers téléversés avec succès
-          console.log('Fichiers téléversés avec succès');
         },
         (error) => {
-          // Gérer les erreurs de téléversement ici
-          console.error('Erreur lors du téléversement des fichiers :', error);
+          console.error('File upload error :', error);
         }
       );
     }

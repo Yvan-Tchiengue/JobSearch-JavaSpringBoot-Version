@@ -13,7 +13,6 @@ h2{
   position: fixed;
   overflow-y: auto;
 }
-
 form {
   background-color: white;
   border-radius: 25px;
@@ -22,14 +21,12 @@ form {
   margin: 50px auto;
   box-shadow: 0 0 10px #001F3F;
 }
-
 form span {
   color: #001F3F;
   font-weight: bold;
   display: block;
   margin-bottom: 10px;
 }
-
 form input {
   width: 96%;
   padding: 10px;
@@ -44,7 +41,6 @@ form input {
   border: 1px solid #001F3F;
   margin-bottom: 20px;
 }
-
 form button {
   width: 100%;
   padding: 10px;
@@ -56,11 +52,9 @@ form button {
   font-weight: bold;
   text-transform: lowercase;
 }
-
 form button:hover {
   background-color: deeppink;
 }
-
 a {
   color: white;
   display: block;
@@ -70,11 +64,9 @@ a {
   font-weight: bold;
   text-transform: lowercase;
 }
-
 a:hover {
   color: deeppink;
 }
-
 .footer {
   background: #001F3F;
   color: white;

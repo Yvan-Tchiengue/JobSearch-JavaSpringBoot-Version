@@ -10,25 +10,19 @@ import { saveAs } from 'file-saver';
 })
 export class ApplicationComponent {
 
-  jobs: any[] = []; // Array pour stocker les offres d'emploi
-  private apiUrl = 'http://localhost:3000/api'; // Remplacez ceci par l'URL de votre API backend
-
+  jobs: any[] = [];
+  private apiUrl = 'http://localhost:3000/api';
   constructor(private http: HttpClient,
               private authService: SessionService) {
   }
 
-
   openCandidatures(){
-
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête
+      'Authorization': `Bearer ${this.authService.getLocalStorage()}`
     });
-
     this.http.get<any[]>(`${this.apiUrl}/myJobsCandidatures`, {headers}).subscribe((data: any[]) => {
       this.jobs = data;
-      console.log(data);
     });
-
   }
 
   acceptCandidatures(job: any){
@@ -38,70 +32,49 @@ export class ApplicationComponent {
 
     this.http.post(`${this.apiUrl}/accept-candidatures`, job, {headers}).subscribe(
       response => {
-        console.log(response);
       },
       error => {
-        console.error(error);
       });
   }
 
   rejectCandidatures(job: any){
-    console.log(job);
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête
+      'Authorization': `Bearer ${this.authService.getLocalStorage()}`
     });
-
-
     this.http.post(`${this.apiUrl}/reject-candidatures`, job, {headers}).subscribe(
       response => {
-        console.log(response);
       },
       error => {
-        console.error(error);
       });
-
   }
 
   idCardDownload(job: any) {
-
-    console.log("verification du fichier ",job);
     const jobseek = job.jobSeekerId;
-    const url = `assets/identitycard${jobseek}.pdf`; // Utilisez les backticks ici
-
+    const url = `assets/identitycard${jobseek}.pdf`;
     this.http.get(url, { responseType: 'blob' }).subscribe(blob => {
-      saveAs(blob, `identitycard_${jobseek}.pdf`); // Le fichier sera téléchargé avec ce nom
+      saveAs(blob, `identitycard_${jobseek}.pdf`);
     });
   }
 
   workPermitDownload(job: any) {
-
-    console.log("verification du fichier ",job);
     const jobseek = job.jobSeekerId;
-    const url = `assets/workpermit${jobseek}.pdf`; // Utilisez les backticks ici
-
+    const url = `assets/workpermit${jobseek}.pdf`;
     this.http.get(url, { responseType: 'blob' }).subscribe(blob => {
-      saveAs(blob, `workpermit_${jobseek}.pdf`); // Le fichier sera téléchargé avec ce nom
+      saveAs(blob, `workpermit_${jobseek}.pdf`);
     });
   }
   cvDownload(job: any) {
-
-    console.log("verification du fichier ",job);
     const jobseek = job.jobSeekerId;
-    const url = `assets/cv${jobseek}.pdf`; // Utilisez les backticks ici
-
+    const url = `assets/cv${jobseek}.pdf`;
     this.http.get(url, { responseType: 'blob' }).subscribe(blob => {
-      saveAs(blob, `cv_${jobseek}.pdf`); // Le fichier sera téléchargé avec ce nom
+      saveAs(blob, `cv_${jobseek}.pdf`);
     });
   }
   titleOfStayDownload(job: any) {
-
-    console.log("verification du fichier ",job);
     const jobseek = job.jobSeekerId;
-    const url = `assets/titleofstay${jobseek}.pdf`; // Utilisez les backticks ici
-
+    const url = `assets/titleofstay${jobseek}.pdf`;
     this.http.get(url, { responseType: 'blob' }).subscribe(blob => {
-      saveAs(blob, `titleofstay_${jobseek}.pdf`); // Le fichier sera téléchargé avec ce nom
+      saveAs(blob, `titleofstay_${jobseek}.pdf`);
     });
   }
-
 }

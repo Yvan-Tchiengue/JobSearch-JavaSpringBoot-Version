@@ -24,11 +24,10 @@ export class BookingRequestComponent {
 
   submit() {
     const formData = this.registerForm.value;
-    this.jobsOfferService.creerOffre(formData).subscribe(
-      () => alert('Offre d\'emploi créée avec succès!'),
-      err => alert('Erreur lors de la création de l\'offre d\'emploi: ' + err.message)
+    this.jobsOfferService.createOffer(formData).subscribe(
+      () => alert('Job offer successfully created!'),
+      err => alert('Error when creating a job offer: ' + err.message)
     );
     this.isSubmitted = true;
   }
-
 }

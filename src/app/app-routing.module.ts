@@ -12,9 +12,7 @@ import {JobSubmitionComponent} from "./job-submition/job-submition.component";
 import {CandidatureComponent} from "./candidature/candidature.component";
 import {EmployeJobsOfferComponent} from "./employe-jobs-offer/employe-jobs-offer.component";
 import {ApplicationComponent} from "./application/application.component";
-import {HOME} from "@angular/cdk/keycodes";
 import {HomeComponent} from "./home/home.component";
-import {ErrorDialogComponent} from "./error-dialog/error-dialog.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/connection', pathMatch: 'full'},

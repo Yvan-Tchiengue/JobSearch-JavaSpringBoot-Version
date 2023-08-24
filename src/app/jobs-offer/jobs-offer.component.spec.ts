@@ -53,22 +53,17 @@ describe('JobsOfferComponent', () => {
 
   it('should fetch jobs when "rechercherJobs" is called', () => {
     component.rechercherJobs();
-
     const req = httpMock.expectOne('http://localhost:3000/api/jobsOffer');
     expect(req.request.method).toBe('GET');
     req.flush(mockJobOffers);
-
     expect(component.jobs.length).toBe(2);
     expect(component.jobs[0].title).toBe('Developer');
   });
 
   it('should send candidature when "sendCandidature" is called', () => {
     const mockJob = { title: 'Developer', location: 'Location 1', description: 'Job 1 description', isApplied: false };
-
     component.sendCandidature(mockJob);
-
     expect(mockJob.isApplied).toBeTrue();
-
     const req = httpMock.expectOne('http://localhost:3000/api/upload-candidature');
     expect(req.request.method).toBe('POST');
     expect(req.request.headers.get('Authorization')).toBe('Bearer mockToken');
@@ -78,7 +73,6 @@ describe('JobsOfferComponent', () => {
   it('should render job offers', () => {
     component.jobs = mockJobOffers;
     fixture.detectChanges();
-
     const jobTitles = fixture.debugElement.queryAll(By.css('mat-card-title'));
     expect(jobTitles.length).toBe(2);
     expect(jobTitles[0].nativeElement.textContent).toContain('Developer');

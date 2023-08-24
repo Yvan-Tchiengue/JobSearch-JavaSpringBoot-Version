@@ -37,7 +37,6 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // You can add more tests here as necessary, for example:
   it('should render header and footer', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-header')).not.toBeNull();

@@ -36,39 +36,33 @@ describe('ApplicationComponent', () => {
   it('should make a GET request when openCandidatures is called', () => {
     const mockToken = 'mock-token';
     spyOn(sessionService, 'getLocalStorage').and.returnValue(mockToken);
-
     component.openCandidatures();
-
     const req = httpTestingController.expectOne('http://localhost:3000/api/myJobsCandidatures');
     expect(req.request.method).toBe('GET');
     expect(req.request.headers.get('Authorization')).toBe(`Bearer ${mockToken}`);
-    req.flush([]); // Simulez une réponse vide pour cette requête.
+    req.flush([]);
   });
 
   it('should make a POST request when acceptCandidatures is called', () => {
     const mockToken = 'mock-token';
-    const mockJob = { id: 1, title: 'Dev' }; // Simulons un job pour le test
+    const mockJob = { id: 1, title: 'Dev' };
     spyOn(sessionService, 'getLocalStorage').and.returnValue(mockToken);
-
     component.acceptCandidatures(mockJob);
-
     const req = httpTestingController.expectOne('http://localhost:3000/api/accept-candidatures');
     expect(req.request.method).toBe('POST');
     expect(req.request.headers.get('Authorization')).toBe(`Bearer ${mockToken}`);
-    req.flush({}); // Simulez une réponse vide pour cette requête.
+    req.flush({});
   });
 
   it('should make a POST request when rejectCandidatures is called', () => {
     const mockToken = 'mock-token';
     const mockJob = { id: 2, title: 'Tester' };
     spyOn(sessionService, 'getLocalStorage').and.returnValue(mockToken);
-
     component.rejectCandidatures(mockJob);
-
     const req = httpTestingController.expectOne('http://localhost:3000/api/reject-candidatures');
     expect(req.request.method).toBe('POST');
     expect(req.request.headers.get('Authorization')).toBe(`Bearer ${mockToken}`);
-    req.flush({}); // Simulez une réponse vide pour cette requête.
+    req.flush({});
   });
 
 });

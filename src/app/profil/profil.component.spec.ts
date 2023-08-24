@@ -30,7 +30,6 @@ describe('ProfilComponent', () => {
     fixture = TestBed.createComponent(ProfilComponent);
     component = fixture.componentInstance;
     mockService = TestBed.inject(ProfileService);
-
     fixture.detectChanges();
   });
 
