@@ -7,8 +7,6 @@ describe('User account login', () => {
     cy.get('input[formControlName="email"]').type('yvan.tchiengue1504@yahoo.fr');
     cy.get('input[formControlName="password"]').type('qqqqqqqq');
     cy.get('button[type="submit"]').click();
-
-    // Nous vérifions donc que l'URL est correcte.
     cy.url().should('include', '/dashboard');
   });
 
@@ -16,10 +14,8 @@ describe('User account login', () => {
     cy.get('input[formControlName="email"]').type('wrongEmail@example.com');
     cy.get('input[formControlName="password"]').type('wrongPassword123');
     cy.get('button[type="submit"]').click();
-
-    // Lorsque les informations d'identification sont incorrectes, une alerte doit s'afficher.
     cy.on('window:alert', (str) => {
-      expect(str).to.equal('Erreur lors de l\'authentification: Authentication error: wrong email address or password!');
+      expect(str).to.equal('Authentication error: wrong email address or password!');
     });
   });
 });

@@ -23,6 +23,6 @@ body {
   width: 100%;
   font-weight: bold;
   text-transform: uppercase;
-  flex-shrink: 0; /* Cette ligne empêche le footer de rétrécir si le contenu est grand */
+  flex-shrink: 0;
 }
 

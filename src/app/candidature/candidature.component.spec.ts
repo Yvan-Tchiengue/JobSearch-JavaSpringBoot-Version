@@ -10,7 +10,7 @@ import {FooterComponent} from "../footer/footer.component";
 class MockCandidatureService {
   getCandidatures() {
     return [
-      { jobTitle: 'Dev', candidateName: 'John', candidateEmail: 'john@example.com', candidatePhone: '1234567890' },
+      { jobTitle: 'Dev', candidateName: 'tony', candidateEmail: 'tony@example.com', candidatePhone: '1234567890' },
     ];
   }
 }

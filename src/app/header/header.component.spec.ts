@@ -16,7 +16,7 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     mockSessionService = {
       getUserType: jasmine.createSpy('getUserType').and.returnValue('jobseeker'),
-      getUserName: jasmine.createSpy('getUserName').and.returnValue('John Doe'),
+      getUserName: jasmine.createSpy('getUserName').and.returnValue('Tony Yvanno'),
       logOutSession: jasmine.createSpy('logOutSession')
     };
 
@@ -42,7 +42,7 @@ describe('HeaderComponent', () => {
     expect(mockSessionService.getUserType).toHaveBeenCalled();
     expect(mockSessionService.getUserName).toHaveBeenCalled();
     expect(component.userType).toBe('jobseeker');
-    expect(component.userName).toBe('John Doe');
+    expect(component.userName).toBe('Tony Yvanno');
   });
 
   it('should call logOutSession and navigate to /connection on logout', () => {

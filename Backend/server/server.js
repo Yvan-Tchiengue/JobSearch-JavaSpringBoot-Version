@@ -4,7 +4,7 @@ const port = 3000;
 const cors = require('cors');
 app.use(cors());
 const multer = require('multer');
-require('./models/database'); //Import database.js module to establish database connection.
+require('./models/database');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 

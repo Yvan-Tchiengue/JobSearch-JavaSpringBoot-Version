@@ -14,12 +14,12 @@ describe('EmployeJobsOfferComponent', () => {
     mockSessionService = {
       getLocalStorage: jasmine.createSpy('getLocalStorage').and.returnValue('mock-token'),
       getUserType: jasmine.createSpy('getUserType').and.returnValue('mock-user-type'),
-      getUserName: jasmine.createSpy('getUserName').and.returnValue('mock-username') // Mocking the getUserName method
+      getUserName: jasmine.createSpy('getUserName').and.returnValue('mock-username')
     };
 
     TestBed.configureTestingModule({
       declarations: [EmployeJobsOfferComponent, HeaderComponent],
-      imports: [HttpClientTestingModule], // Use this module to mock HTTP requests
+      imports: [HttpClientTestingModule],
       providers: [
         { provide: SessionService, useValue: mockSessionService }
       ]
@@ -33,7 +33,7 @@ describe('EmployeJobsOfferComponent', () => {
   });
 
   afterEach(() => {
-    httpTestingController.verify(); // Ensure no outstanding requests
+    httpTestingController.verify();
   });
 
   it('should create', () => {

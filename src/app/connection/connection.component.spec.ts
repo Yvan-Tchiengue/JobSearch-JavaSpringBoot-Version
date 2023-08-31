@@ -47,10 +47,10 @@ describe('ConnectionComponent', () => {
   });
 
   it('should call authentification method and navigate to dashboard upon successful authentication', () => {
-    mockAuthService.authentification.and.returnValue(of({ token: 'dummyToken', userType: 'user', userID: '123', userName: 'John' }));
+    mockAuthService.authentification.and.returnValue(of({ token: 'userToken', userType: 'user', userID: '123', userName: 'tony' }));
     component.submit();
     expect(mockAuthService.authentification).toHaveBeenCalled();
-    expect(mockSessionService.setSession).toHaveBeenCalledWith('dummyToken', 'user', '123', 'John');
+    expect(mockSessionService.setSession).toHaveBeenCalledWith('userToken', 'user', '123', 'tony');
   });
 
   it('should display an error message upon failed authentication', () => {

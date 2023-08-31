@@ -24,7 +24,7 @@ export class JobsConfirmationComponent {
 
   seeConfirmation(){
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête
+      'Authorization': `Bearer ${this.authService.getLocalStorage()}`
     });
     this.http.get<any[]>(`${this.apiUrl}/see-confirmation`,{headers} ).subscribe((data: any[]) => {
       this.jobs = data;

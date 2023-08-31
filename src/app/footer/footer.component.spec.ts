@@ -24,7 +24,7 @@ describe('FooterComponent', () => {
   it('should display the correct copyright text', () => {
     const footerElement = nativeElement.querySelector('footer');
     const footerText = footerElement ? footerElement.textContent : null;
-    expect(footerText).toContain('Yvan Tchiengue. Copyright © 2023'); // Note the change here
+    expect(footerText).toContain('Yvan Tchiengue. Copyright © 2023');
   });
 
 });

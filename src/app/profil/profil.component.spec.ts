@@ -77,7 +77,7 @@ describe('ProfilComponent', () => {
     spyOn(console, 'error');
     component.identityCardFile = new File([""], "filename", { type: "text/html" });
     component.onFilesIdentityCardUpload();
-    expect(console.error).toHaveBeenCalledWith('Erreur lors du téléversement des fichiers :', 'Error occurred');
+    expect(console.error).toHaveBeenCalledWith('File upload error :', 'Error occurred');
   });
 
   it('should handle error if uploadTitleOfStayFiles service fails', () => {
@@ -85,7 +85,7 @@ describe('ProfilComponent', () => {
     spyOn(console, 'error');
     component.titleOfStayFile = new File([""], "filename", { type: "text/html" });
     component.onFilesTitleOfStayUpload();
-    expect(console.error).toHaveBeenCalledWith('Erreur lors du téléversement des fichiers :', 'Error occurred');
+    expect(console.error).toHaveBeenCalledWith('File upload error :', 'Error occurred');
   });
 
   it('should handle error if uploadWorkPermitFiles service fails', () => {
@@ -93,7 +93,7 @@ describe('ProfilComponent', () => {
     spyOn(console, 'error');
     component.workPermitFile = new File([""], "filename", { type: "text/html" });
     component.onFilesWorkPermitUpload();
-    expect(console.error).toHaveBeenCalledWith('Erreur lors du téléversement des fichiers :', 'Error occurred');
+    expect(console.error).toHaveBeenCalledWith('File upload error :', 'Error occurred');
   });
 
   it('should handle error if uploadMotivationLetterFiles service fails', () => {
@@ -101,7 +101,7 @@ describe('ProfilComponent', () => {
     spyOn(console, 'error');
     component.motivationLetterFile = new File([""], "filename", { type: "text/html" });
     component.onFilesMotivationLetterUpload();
-    expect(console.error).toHaveBeenCalledWith('Erreur lors du téléversement des fichiers :', 'Error occurred');
+    expect(console.error).toHaveBeenCalledWith('File upload error :', 'Error occurred');
   });
 
 });

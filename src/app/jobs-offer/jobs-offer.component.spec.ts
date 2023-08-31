@@ -31,7 +31,7 @@ describe('JobsOfferComponent', () => {
           useValue: {
             getLocalStorage: jasmine.createSpy('getLocalStorage').and.returnValue('mockToken'),
             getUserType: jasmine.createSpy('getUserType').and.returnValue('mockUserType'),
-            getUserName: jasmine.createSpy('getUserName').and.returnValue('mockUserName')  // mock as per your requirement
+            getUserName: jasmine.createSpy('getUserName').and.returnValue('mockUserName')
           }
         }
       ],

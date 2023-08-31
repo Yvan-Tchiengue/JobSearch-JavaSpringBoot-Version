@@ -4,7 +4,6 @@ describe('Account creation', () => {
   });
 
   it('must allow the user to create an account', () => {
-    // Intercepte les alertes
     const stub = cy.stub();
     cy.on('window:alert', (str) => {
       expect(str).to.equal('Account created successfully!');

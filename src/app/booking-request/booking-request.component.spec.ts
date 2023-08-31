@@ -61,6 +61,6 @@ describe('BookingRequestComponent', () => {
     spyOn(window, 'alert');
     component.submit();
     expect(mockJobOfferService.createOffer).toHaveBeenCalledWith(mockOffer);
-    expect(window.alert).toHaveBeenCalledWith('Erreur lors de la création de l\'offre d\'emploi: Failed to submit');
+    expect(window.alert).toHaveBeenCalledWith('Failed to submit');
   });
 });

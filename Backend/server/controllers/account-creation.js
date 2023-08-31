@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
  */
 exports.createAccount = async (req, res) => {
     const user = req.body;
-    // Hash the password before storing it in the database
+    // Hash the password
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
 

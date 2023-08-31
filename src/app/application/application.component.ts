@@ -27,7 +27,7 @@ export class ApplicationComponent {
 
   acceptCandidatures(job: any){
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.authService.getLocalStorage()}`  // Ajoutez le token JWT à l'en-tête de la requête
+      'Authorization': `Bearer ${this.authService.getLocalStorage()}`
     });
 
     this.http.post(`${this.apiUrl}/accept-candidatures`, job, {headers}).subscribe(
