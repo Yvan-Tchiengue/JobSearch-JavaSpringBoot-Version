@@ -52,7 +52,7 @@ describe('JobsOfferComponent', () => {
   });
 
   it('should fetch jobs when "rechercherJobs" is called', () => {
-    component.rechercherJobs();
+    component.findJobs();
     const req = httpMock.expectOne('http://localhost:3000/api/jobsOffer');
     expect(req.request.method).toBe('GET');
     req.flush(mockJobOffers);

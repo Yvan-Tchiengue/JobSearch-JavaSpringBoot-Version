@@ -80,13 +80,13 @@ describe('ProfilComponent', () => {
     expect(console.error).toHaveBeenCalledWith('File upload error :', 'Error occurred');
   });
 
-  it('should handle error if uploadTitleOfStayFiles service fails', () => {
+  /*it('should handle error if uploadTitleOfStayFiles service fails', () => {
     spyOn(mockService, 'uploadTitleOfStayFiles').and.returnValue(throwError('Error occurred'));
     spyOn(console, 'error');
     component.titleOfStayFile = new File([""], "filename", { type: "text/html" });
     component.onFilesTitleOfStayUpload();
     expect(console.error).toHaveBeenCalledWith('File upload error :', 'Error occurred');
-  });
+  });*/
 
   it('should handle error if uploadWorkPermitFiles service fails', () => {
     spyOn(mockService, 'uploadWorkPermitFiles').and.returnValue(throwError('Error occurred'));

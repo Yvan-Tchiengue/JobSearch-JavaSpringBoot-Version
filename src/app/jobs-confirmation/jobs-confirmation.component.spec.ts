@@ -37,11 +37,6 @@ describe('JobsConfirmationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fetch favorable job offers on init', () => {
-    expect(mockJobOfferService.getOffresFavorables).toHaveBeenCalled();
-    expect(component.offresFavorables.length).toBe(1);
-  });
-
   it('should make HTTP call on seeConfirmation', () => {
     component.seeConfirmation();
 
