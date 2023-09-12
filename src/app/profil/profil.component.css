@@ -50,6 +50,9 @@ span{
   font-weight: bold;
   text-transform: uppercase;
   flex-shrink: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 .form-container .form-group {
   display: flex;
