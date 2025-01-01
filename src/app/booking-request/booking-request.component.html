@@ -1,0 +1,18 @@
+<app-header></app-header>
+<h2>Request for Manpower</h2>
+<form [formGroup]="registerForm" (ngSubmit)="submit()">
+  <span>Title</span>
+  <input formControlName="title" name="titre" placeholder="Title">
+  <span class="error" style="color: red" *ngIf="registerForm?.get('title')?.errors?.['required'] && registerForm?.get('title')?.touched">Title is required</span>
+  <span>Description</span>
+  <input formControlName="description" name="description" placeholder="Description">
+  <span class="error" style="color: red" *ngIf="registerForm?.get('description')?.errors?.['required'] && registerForm?.get('description')?.touched">Description is required</span>
+  <span>Location</span>
+  <input formControlName="location" name="lieu" placeholder="Location">
+  <span class="error" style="color: red" *ngIf="registerForm?.get('location')?.errors?.['required'] && registerForm?.get('location')?.touched">Location is required</span>
+  <button type="submit" [disabled]="!registerForm.valid || isSubmitted">Publish the Job Offer</button>
+</form>
+<!--<footer class="footer">
+  <p>Yvan Richnel Tchiengue. Copyright &copy; 2023</p>
+</footer>-->
+

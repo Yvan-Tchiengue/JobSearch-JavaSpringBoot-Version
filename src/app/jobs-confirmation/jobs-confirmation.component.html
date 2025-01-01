@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="jobs-offer">
+  <div class="search">
+    <button mat-raised-button (click)="seeConfirmation()">search</button>
+  </div>
+  <ng-container *ngIf="jobs.length > 0">
+    <div *ngFor="let job of jobs">
+      <mat-card>
+        <mat-card-header>
+          <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div>
+              <mat-card-title>{{ job.title }}</mat-card-title>
+              <mat-card-subtitle>{{ job.location }}</mat-card-subtitle>
+            </div>
+            <div>
+              <span mat-button color="primary" class="accepted" *ngIf="job.confirmationStatus == 'accepted'">{{job.confirmationStatus}}</span>
+              <span mat-button color="warn" class="rejected" *ngIf="job.confirmationStatus == 'rejected'">{{job.confirmationStatus}}</span>
+            </div>
+          </div>
+        </mat-card-header>
+        <mat-card-content *ngIf="job.description">
+          <p>{{ job.description }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </ng-container>
+  <div class="no-job" *ngIf="jobs.length === 0">
+    <p>No jobs found.</p>
+  </div>
+</div>
+<footer class="footer">
+  <p>Yvan Richnel Tchiengue. Copyright &copy; 2023</p>
+</footer>

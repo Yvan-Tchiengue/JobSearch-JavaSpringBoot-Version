@@ -1,0 +1,13 @@
+<app-header></app-header>
+<div class="welcome-message" style="height: 100%">
+  <h1>Welcome to our employment platform</h1>
+  <p style="text-align: center" *ngIf="userType === 'jobseeker'">
+    You can search for jobs, submit your application and discover a wide range of professional opportunities.
+  </p>
+  <p style="text-align: center" *ngIf="userType === 'employe'">
+    You can submit your Booking Request and discover a wide range of professional Jobseeker.
+  </p>
+</div>
+<footer class="footer">
+  <p>Yvan Richnel Tchiengue. Copyright &copy; 2023</p>
+</footer>

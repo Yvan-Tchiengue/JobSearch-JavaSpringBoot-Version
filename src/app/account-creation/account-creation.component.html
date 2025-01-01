@@ -1,0 +1,35 @@
+<h2>Account Creation</h2>
+<form [formGroup]="registerForm" (ngSubmit)="submit()">
+  <span>Name</span>
+  <input type="text" formControlName="namee" placeholder="Name">
+  <span class="error" style="color: red"
+        *ngIf="registerForm?.get('namee')?.errors?.['required'] && registerForm?.get('namee')?.touched">
+  Name is required
+  </span>
+  <span>E-mail</span>
+  <input type="email" formControlName="email" placeholder="Email">
+  <span class="error" style="color: red"
+        *ngIf="registerForm?.get('email')?.errors?.['required'] && registerForm?.get('email')?.touched">
+  Email is required
+  </span>
+  <span>Password</span>
+  <input type="password" formControlName="password" placeholder="Password">
+  <span class="error" style="color: red"
+        *ngIf="registerForm?.get('password')?.errors?.['required'] && registerForm?.get('password')?.touched">
+  Password is required
+  </span>
+  <span class="error" style="color: red"
+        *ngIf="registerForm?.get('password')?.errors?.['minlength'] && registerForm?.get('password')?.touched">
+  Password must be at least 8 characters
+  </span>
+  <span>Type of Account</span>
+  <select class="sel" formControlName="type_of_account">
+    <option value="jobseeker">JobSeeker</option>
+    <option value="employe">Employe</option>
+  </select>
+  <span class="error" style="color: red"
+        *ngIf="registerForm?.get('type_of_account')?.errors?.['required'] && registerForm?.get('type_of_account')?.touched">
+  Type of account is required
+  </span>
+  <button type="submit" [disabled]="!registerForm.valid">Create an Account</button>
+</form>

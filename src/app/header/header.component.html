@@ -1,0 +1,36 @@
+<mat-toolbar *ngIf="userType === 'jobseeker'">
+  <button mat-button aria-label="Dashboard button" routerLink="/dashboard">
+    JobSearch
+  </button>
+  <button mat-button aria-label="Jobs button" routerLink="/jobs-offer">
+    Jobs-Offer
+  </button>
+  <button mat-button aria-label="Confirmation button" routerLink="/jobs-confirmation">
+    Confirmation
+  </button>
+  <button mat-button aria-label="Profile button" routerLink="/profile">
+    Profile
+  </button>
+  <button mat-button aria-label="Confirmation button" (click)="logout()">
+    LogOut - {{userName}}
+  </button>
+</mat-toolbar>
+
+<mat-toolbar *ngIf="userType === 'employe'">
+  <button mat-button aria-label="Dashboard button" routerLink="/dashboard">
+    JobSearch
+  </button>
+  <button mat-button aria-label="Dashboard button" routerLink="/booking-request">
+    Booking-Request
+  </button>
+  <button mat-button aria-label="Jobs button" routerLink="/employe-jobs-offer">
+    My-Jobs-Offer
+  </button>
+  <button mat-button aria-label="Confirmation button" routerLink="/applications">
+    Applications
+  </button>
+  <button mat-button aria-label="Confirmation button" (click)="logout()">
+    LogOut - {{userName}}
+  </button>
+</mat-toolbar>
+

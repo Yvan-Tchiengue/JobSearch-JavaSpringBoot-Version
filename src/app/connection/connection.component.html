@@ -1,0 +1,17 @@
+<h2>Welcome to our website</h2>
+<form [formGroup]="registerForm" (ngSubmit)="submit()">
+  <span>E-mail</span>
+  <input formControlName="email" name="email" placeholder="Email">
+  <span class="error" style="color: red" *ngIf="registerForm?.get('email')?.errors?.['required'] && registerForm?.get('email')?.touched">Email is required</span>
+
+  <span>Password</span>
+  <input formControlName="password" name="password" placeholder="Mot de passe" type="password">
+  <span class="error" style="color: red" *ngIf="registerForm?.get('password')?.errors?.['required'] && registerForm?.get('password')?.touched">Password is required</span>
+  <span class="error" style="color: red" *ngIf="registerForm?.get('password')?.errors?.['minlength'] && registerForm?.get('password')?.touched">
+  Password must be at least 8 characters
+  </span>
+  <button type="submit" [disabled]="!registerForm.valid || isSubmitted">log in</button>
+</form>
+<a routerLink="/account-creation">Create an account</a>
+
+
