@@ -28,6 +28,7 @@ export class ConnectionComponent {
     });
   }
 
+
   submit() {
     const formData = this.registerForm.value;
     this.authService.authentification(formData).subscribe(
