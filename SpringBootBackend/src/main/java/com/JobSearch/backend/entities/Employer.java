@@ -18,5 +18,61 @@ public class Employer {
     @OneToMany(mappedBy = "employer")
     private List<JobOffer> jobOffers;
 
+    public Long getId() {
+    	return id;
+    }
+    
+    public void setId(Long id) {
+    	this.id = id;    
+    }
+    
+	public String getNamee() {
+		return namee;
+	}
+
+	public void setNamee(String namee) {
+		this.namee = namee;
+	}
+
+	public String getAdress() {
+		return adress;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getTypeOfAccount() {
+		return typeOfAccount;
+	}
+
+	public void setTypeOfAccount(String typeOfAccount) {
+		this.typeOfAccount = typeOfAccount;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
     // Getters and Setters
 }
